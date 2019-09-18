@@ -7,6 +7,9 @@ import { ClientComponent } from './client/client.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReportsComponent } from './reports/reports.component';
+import { ReleaseComponent } from './release/release.component';
+import { FeatureComponent } from './feature/feature.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ClientComponent,
     HeaderComponent,
     LayoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    ReportsComponent,
+    ReleaseComponent,
+    FeatureComponent
   ],
   imports: [
     BrowserModule,
