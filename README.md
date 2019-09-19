@@ -30,3 +30,22 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ng g c feature -s  --spec false
 ng g service services/DataStore --spec false --dry-run
+
+npm install lodash  ngx-loading --save
+
+##register loading module
+import {NgxLoadingModule} from 'ngx-loading';
+NgxLoadingModule.forRoot({})
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+
+##register ng-bootstrap
+npm install @ng-bootstrap/ng-bootstrap --save 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+@NgModule({
+  ...
+  imports: [NgbModule, ...],
+  ...
+})
+
+---
+npm install moment --save

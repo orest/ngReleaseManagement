@@ -1,1 +1,25 @@
-<p>release works!</p>
+<div>
+  <p>release works!</p>
+  <form name="frmRelease ">
+    <div *ngIf="release">
+      <div class="form-group">
+        <div class="btn-group btn-group-toggle">
+          <label class="btn-light" ngbButtonLabel>
+            <input name="iOsRelease" type="checkbox" ngbButton [(ngModel)]="release.iOsRelease"> iOs
+          </label>
+          <label class="btn-light" ngbButtonLabel>
+            <input name="androidRelease" type="checkbox" ngbButton [(ngModel)]="release.androidRelease"> Android
+          </label>
+        </div>
+      </div>
+
+      <input type="text"  name="qaStartDate" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="release.qaStartDate" />
+      <button (click)="d.toggle()">Toggle</button>
+    </div>
+
+  </form>
+  <hr>
+  <pre>{{release | json}}</pre>
+
+  <br>
+</div>

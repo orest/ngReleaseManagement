@@ -1,1 +1,14 @@
-<p>dashboard works!</p>
+<div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+  <div class="card" *ngFor="let release of upcomingReleases">
+
+    <div class="card-body">
+      {{release.clientName}}
+      {{release.applicationVersion}}
+      <a [routerLink]="['/release', release.releaseId]" routerLinkActive="router-link-active">
+        {{release.applicationVersion}}
+      </a>
+    </div>
+
+  </div>
+</div>

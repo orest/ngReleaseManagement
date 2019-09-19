@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'client', component: ClientComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'feature', component: FeatureComponent },
+  { path: 'release/:id', component: ReleaseComponent },
   { path: 'release', component: ReleaseComponent },
   {
     path: '', redirectTo: '/dashboard', pathMatch: 'full'
