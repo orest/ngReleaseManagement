@@ -5,15 +5,15 @@
       <div class="form-group">
         <div class="btn-group btn-group-toggle">
           <label class="btn-light" ngbButtonLabel>
-            <input name="iOsRelease" type="checkbox" ngbButton [(ngModel)]="release.iOsRelease"> iOs
+            <input ngbButton name="iOsRelease" type="checkbox"  [(ngModel)]="release.iOsRelease"> iOs
           </label>
           <label class="btn-light" ngbButtonLabel>
-            <input name="androidRelease" type="checkbox" ngbButton [(ngModel)]="release.androidRelease"> Android
+            <input ngbButton name="androidRelease" type="checkbox"  [(ngModel)]="release.androidRelease"> Android
           </label>
         </div>
       </div>
 
-      <input type="text"  name="qaStartDate" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="release.qaStartDate" />
+      <input type="text" name="qaStartDate" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="release.qaStartDate" />
       <button (click)="d.toggle()">Toggle</button>
     </div>
 

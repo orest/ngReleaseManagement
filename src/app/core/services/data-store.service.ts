@@ -12,7 +12,7 @@ export class DataStoreService {
   constructor(private http: HttpClient) { }
 
   getFeatures() {
-    this.http.get<any[]>(this.baseUrl + "/features")
+    this.http.get<any[]>(this.baseUrl + "/features");
   }
 
   getReleases(): Observable<Release[]> {
@@ -24,7 +24,7 @@ export class DataStoreService {
   getRelease(id): Observable<Release> {
     return this.http.get<Release[]>("../assets/data/releases.json").pipe(
       map(data => data.find(p => p.releaseId === id))
-   );
+    );
   }
 
   getClients(): Observable<Release[]> {

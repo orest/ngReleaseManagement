@@ -8,7 +8,8 @@ export class Release {
   uatEndDate: Date;
   clientApproverName: string;
   notes: string;
-  releasePlatforms: any[];
+  iOsRelease: boolean;
+  androidRelease: boolean;
   features: any[];
 
   constructor() {

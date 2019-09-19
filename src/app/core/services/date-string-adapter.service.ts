@@ -6,13 +6,13 @@ import * as moment from 'moment';
   providedIn: 'root'
 })
 export class DateStringAdapterService implements NgbDateAdapter<Date> {
-  //moment = moment;
+  // moment = moment;
   fromModel(value: Date): NgbDateStruct {
 
     if (!value) {
       return;
     }
-    //var mom = this.moment(value);
+    // var mom = this.moment(value);
     const date = new Date(value);
     return {
       year: Number(date.getFullYear()),

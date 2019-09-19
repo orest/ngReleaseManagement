@@ -18,10 +18,10 @@ export class ReleaseComponent implements OnInit {
 
     this.sub = this.route.params.subscribe(params => {
       this.id = +params.id;
-      console.log(this.id)
+
       this.dataService.getRelease(this.id).subscribe(r => {
         this.release = r;
-      })
+      });
     });
   }
 

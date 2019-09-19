@@ -40,8 +40,8 @@ export class DashboardComponent implements OnInit {
           applicationVersion: p.applicationVersion,
           releaseId: p.releaseId,
           clientName: client.clientName
-        }
-      })
+        };
+      });
     });
   }
 
