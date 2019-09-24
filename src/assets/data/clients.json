@@ -1,10 +1,12 @@
 [
   {
     "clientId": 1,
-    "clientName": "Client One "
+    "clientName": "Client One ",
+    "imageUrl": "/assets/images/logo-nyw.png"
   },
   {
     "clientId": 2,
-    "clientName": "Client Two "
+    "clientName": "Client Two ",
+    "imageUrl":"/assets/images/logo.svg"
   }
 ]

@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Release } from "../modules/Release";
 import { of, from, pipe, Observable, Observer, BehaviorSubject } from "rxjs";
 import { tap, map, filter } from 'rxjs/operators';
+import { Client } from '../modules/Client';
 
 @Injectable({
   providedIn: "root"
@@ -27,8 +28,14 @@ export class DataStoreService {
     );
   }
 
-  getClients(): Observable<Release[]> {
-    return this.http.get<Release[]>("../assets/data/clients.json").pipe(
+  // getClients(): Observable<Release[]> {
+  //   return this.http.get<Release[]>("../assets/data/clients.json").pipe(
+  //     tap(data => console.log(data)),
+  //   );
+  // }
+
+  getClients(): Observable<Client[]> {
+    return this.http.get<Client[]>("../assets/data/clients.json").pipe(
       tap(data => console.log(data)),
     );
   }

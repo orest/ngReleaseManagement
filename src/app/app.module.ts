@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ReleaseComponent } from './release/release.component';
 import { DateStringAdapterService } from './core/services/date-string-adapter.service';
+import { ManageClientComponent } from './client/manage-client/manage-client.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DateStringAdapterService } from './core/services/date-string-adapter.se
     DashboardComponent,
     ReportsComponent,
     ReleaseComponent,
-    FeatureComponent
+    FeatureComponent,
+    ManageClientComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,9 @@ import { DateStringAdapterService } from './core/services/date-string-adapter.se
     NgbModule
   ],
   providers: [{ provide: NgbDateAdapter, useClass: DateStringAdapterService }],
+  entryComponents: [
+    ManageClientComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
