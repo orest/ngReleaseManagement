@@ -1,36 +1,34 @@
 <div>
-  <p>release works!</p>
-  <form name="frmRelease ">
-    <div *ngIf="release">
-      <div class="form-group">
-        <div class="btn-group btn-group-toggle">
-          <label class="btn-light" ngbButtonLabel>
-            <input ngbButton name="iOsRelease" type="checkbox" [(ngModel)]="release.iOsRelease"> iOs
-          </label>
-          <label class="btn-light" ngbButtonLabel>
-            <input ngbButton name="androidRelease" type="checkbox" [(ngModel)]="release.androidRelease"> Android
-          </label>
+    <p>release works!</p>
+    <form name="frmRelease ">
+        <div *ngIf="release">
+            <div class="form-group">
+                <div class="btn-group btn-group-toggle">
+                    <label class="btn-light" ngbButtonLabel>
+                        <input ngbButton name="iOsRelease" type="checkbox" [(ngModel)]="release.iOsRelease"> iOs
+                    </label>
+                    <label class="btn-light" ngbButtonLabel>
+                        <input ngbButton name="androidRelease" type="checkbox" [(ngModel)]="release.androidRelease"> Android
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+
+                    <input class="form-control" type="text" name="qaStartDate" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="release.qaStartDate" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" (click)="dp.toggle()">
+                            <i class="fas fa-calendar-alt"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-      </div>
-      <div class="form-group">
-        <div class="input-group">
 
-          <input class="form-control" type="text" name="qaStartDate" ngbDatepicker #dp="ngbDatepicker"
-            [(ngModel)]="release.qaStartDate" />
-          <div class="input-group-append">
-            <button class="btn btn-primary" (click)="dp.toggle()">
-
-              <i class="fas fa-calendar-alt"></i>
-            </button>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-  </form>
-  <hr>
-  <pre>{{release | json}}</pre>
-  <br>
+    </form>
+    <hr>
+    <pre>{{release | json}}</pre>
+    <br>
 </div>

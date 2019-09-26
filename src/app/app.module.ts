@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FeatureComponent } from './feature/feature.component';
 
 // third party mods
@@ -36,6 +36,7 @@ import { ManageClientComponent } from './client/manage-client/manage-client.comp
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxLoadingModule.forRoot({}),
     NgbModule
   ],
