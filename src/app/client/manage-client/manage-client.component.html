@@ -1,33 +1,47 @@
-<div class="modal-header">
-    <h4 class="modal-title">
-        Manage Client
-    </h4>
-</div>
-
-<div class="modal-body">
+<div class="">
     <form novalidate #frmClient="ngForm" (ngSubmit)="submitForm(frmClient)">
-        {{frmClient.controls.clientName.touched }}
+        <div class="modal-header">
+            <h4 class="modal-title">
+                Manage Client
+            </h4>
+        </div>
 
-        <div class="form-group">
-            <label for="">Client Logo</label>
-            <img [src]="client.imageUrl" alt="" style="width: 200px">
-            <i class="fas fa-upload    "></i>
+        <div class="modal-body">
+            <div>
+                <!-- {{frmClient.controls.clientName.touched }} -->
+                <div class="form-group ">
+                    <label for="">Client Logo</label>
+                    <div class="d-flex justify-content-between">
+                        <img [src]="client.imageUrl" alt="" style="width: 200px" *ngIf="client.imageUrl">
+                        <div class="text-right ">
+                            <button class="btn btn-outline-secondary btn-sm ">
+                                <i class="fas fa-upload    "></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Client Name:</label>
+                    <em *ngIf="mouseOverSave || (frmClient.controls.clientName?.invalid 
+                    && frmClient.controls.clientName?.touched) ">*Required </em>
+                    <input type="text" class="form-control" name="clientName" required
+                        [(ngModel)]="client.clientName" />
+
+                </div>
+                <!-- {{client|json}} -->
+
+
+            </div>
+
         </div>
-        <div class="form-group">
-            <label>Client Name:</label>
-            <input type="text" class="form-control" name="clientName" required [(ngModel)]="client.clientName" />
-            <em *ngIf="mouseOverSave || (frmClient.controls.clientName?.invalid 
-            && frmClient.controls.clientName?.touched) ">*Required </em>
+
+        <div class="modal-footer">
+            <span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
+                <button class="btn btn-primary" type="submit" [disabled]="frmClient.invalid">Save</button>
+            </span>
+
+            <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
         </div>
-        {{client|json}}
-        <span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
-            <button class="btn btn-primary" type="submit" [disabled]="frmClient.invalid">Save</button>
-        </span>
 
     </form>
-</div>
-
-<div class="modal-footer">
-    <button class="btn btn-primary" (click)="save()">Save</button>
-    <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
 </div>

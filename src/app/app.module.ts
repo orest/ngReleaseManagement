@@ -18,6 +18,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { ReleaseComponent } from './release/release.component';
 import { DateStringAdapterService } from './core/services/date-string-adapter.service';
 import { ManageClientComponent } from './client/manage-client/manage-client.component';
+import { CollapsibleCardComponent } from './core/components/collapsible-card/collapsible-card.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ManageClientComponent } from './client/manage-client/manage-client.comp
     ReportsComponent,
     ReleaseComponent,
     FeatureComponent,
-    ManageClientComponent
+    ManageClientComponent,
+    CollapsibleCardComponent
   ],
   imports: [
     BrowserModule,

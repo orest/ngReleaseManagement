@@ -1,0 +1,8 @@
+<div class="card ">
+    <div class="card-header" (click)="toggle()"> {{cardTitle}} </div>
+    <div class="card-body" *ngIf="isVisible" >
+        <ng-content  >
+
+        </ng-content>
+    </div>
+</div>

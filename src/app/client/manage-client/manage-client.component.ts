@@ -4,7 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-manage-client',
   templateUrl: './manage-client.component.html',
-  styleUrls: ['./manage-client.component.scss']
+  styles:['em {color:red; float:right }']
+  // styleUrls: ['./manage-client.component.scss']
 })
 export class ManageClientComponent implements OnInit {
   public client: any = {}

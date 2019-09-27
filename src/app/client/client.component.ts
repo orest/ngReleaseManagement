@@ -22,9 +22,7 @@ export class ClientComponent implements OnInit {
     })
   }
 
-  showCreatePop() {
 
-  }
 
   editClient(client) {
     let modalRef = this.modal.open(ManageClientComponent);

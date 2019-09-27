@@ -3,7 +3,7 @@ export class Release {
   applicationVersion: string;
   clientId: number;
   qaStartDate: Date;
-  qatEndDate: Date;
+  qaEndDate: Date;
   uatStartDate: Date;
   uatEndDate: Date;
   clientApproverName: string;
