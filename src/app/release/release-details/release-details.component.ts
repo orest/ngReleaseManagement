@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Release } from '../core/modules/Release';
-import { DataStoreService } from '../core/services/data-store.service';
-import { Client } from '../core/modules/Client';
+import { Release } from '../../core/modules/Release';
+import { DataStoreService } from '../../core/services/data-store.service';
+import { Client } from '../../core/modules/Client';
 
 @Component({
-  selector: 'app-release',
-  templateUrl: './release.component.html',
-  styles: [".btn-light.active {color:#fff !important; background-color: var(--blue)!important}"]
+  
+  templateUrl: './release-details.component.html',
+  styles: [
+	  ".btn-light.active {color:#fff !important; background-color: var(--orange)!important; }",
+	  ".btn-light {border:1px solid #14fd7e !important;width:45% }",
+]
 })
-export class ReleaseComponent implements OnInit {
+export class ReleaseDetailsComponent implements OnInit {
   id: number;
   private sub: any;
   release: Release;

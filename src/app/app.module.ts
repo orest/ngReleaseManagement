@@ -15,10 +15,12 @@ import { HeaderComponent } from './layout/header/header.component';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReportsComponent } from './reports/reports.component';
-import { ReleaseComponent } from './release/release.component';
+
 import { DateStringAdapterService } from './core/services/date-string-adapter.service';
 import { ManageClientComponent } from './client/manage-client/manage-client.component';
 import { CollapsibleCardComponent } from './core/components/collapsible-card/collapsible-card.component';
+import { ReleaseListComponent } from './release/release-list/release-list.component';
+import { ReleaseDetailsComponent } from './release/release-details/release-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CollapsibleCardComponent } from './core/components/collapsible-card/col
     LayoutComponent,
     DashboardComponent,
     ReportsComponent,
-    ReleaseComponent,
+    ReleaseListComponent,
+    ReleaseDetailsComponent,
     FeatureComponent,
     ManageClientComponent,
     CollapsibleCardComponent

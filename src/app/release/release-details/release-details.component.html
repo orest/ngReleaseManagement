@@ -1,0 +1,241 @@
+<div>
+
+	<form name="frmRelease ">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class=" my-3 ">Manage Release
+					<small *ngIf="release" class="text-muted "> :: {{release.applicationVersion}}</small>
+				</h3>
+			</div>
+		</div>
+
+		<div *ngIf="release">
+			<div class="row">
+				<div class="col-md-12 ">
+					<div class="card">
+
+						<div class="card-body">
+							<!-- Version -->
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label">Version</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" name="applicationVersion" [(ngModel)]="release.applicationVersion" placeholder="x.x.xx">
+								</div>
+							</div>
+
+							<!-- Status -->
+							<div class="form-group row">
+								<label for="" class="col-md-3 col-form-label">Status</label>
+								<div class="col-md-9 pt-2">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="statusNew" name="statusCode" value="new" [(ngModel)]="release.statusCode">
+										<label class="custom-control-label" for="statusNew">New</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="statusInProgress" name="statusCode" value="inprogress" [(ngModel)]="release.statusCode">
+										<label class="custom-control-label" for="statusInProgress">In Progress</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="statusCompleted" name="statusCode" value="completed" [(ngModel)]="release.statusCode">
+										<label class="custom-control-label" for="statusCompleted">Completed</label>
+									</div>
+								</div>
+							</div>
+							<!-- Platform -->
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label">Platform</label>
+								<div class="col-md-9">
+									<div class="text-center ">
+										<div class="btn-group btn-group-toggle w-100">
+											<label class="btn-light " ngbButtonLabel>
+												<input ngbButton name="iOsRelease" type="checkbox" [(ngModel)]="release.iOsRelease">
+												<i class="fab fa-apple"></i> iOs
+											</label>
+											<label class="btn-light " ngbButtonLabel>
+												<input ngbButton name="androidRelease" type="checkbox" [(ngModel)]="release.androidRelease">
+												<i class="fab fa-android"></i> Android
+											</label>
+										</div>
+									</div>
+									<div>
+										<table class="table table-borderless table-light table-sm mt-3">
+											<thead>
+												<tr>
+													<th> Platform </th>
+													<th> Submitted Date </th>
+													<th> In Store Date </th>
+
+												</tr>
+											</thead>
+											<tbody>
+												<tr *ngIf="release.iOsRelease">
+													<td>iOS</td>
+													<td>
+														<input type="date" class="form-control form-control-sm">
+													</td>
+													<td><input type="date" class="form-control form-control-sm"></td>
+												</tr>
+												<tr *ngIf="release.androidRelease">
+													<td>Android</td>
+													<td>
+														<input type="date" class="form-control form-control-sm">
+													</td>
+													<td><input type="date" class="form-control form-control-sm"></td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- Client -->
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label">Client</label>
+								<div class="col-md-4">
+									<select class="form-control" name="clientId" [(ngModel)]="release.clientId">
+										<option value=""></option>
+										<option [value]="client.clientId" *ngFor="let client of clients"> {{client.clientName}}</option>
+									</select>
+								</div>
+							</div>
+
+
+							<!-- qaStartDate -->
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label">QA Dates </label>
+								<div class="col-md-4">
+									<label class="text-muted mb-0" for="">from</label>
+									<div class="input-group">
+										<input class="form-control" type="text" name="qaStartDate" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="release.qaStartDate" />
+										<div class="input-group-append">
+											<button class="btn btn-outline-primary" (click)="dp.toggle()">
+												<i class="fas fa-calendar-alt"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<label class="text-muted mb-0" for="">to</label>
+									<div class="input-group">
+										<input class="form-control" type="text" name="qaEndDate" ngbDatepicker #dpQaEnd="ngbDatepicker" [(ngModel)]="release.qaEndDate" />
+										<div class="input-group-append">
+											<button class="btn btn-outline-primary" (click)="dpQaEnd.toggle()">
+												<i class="fas fa-calendar-alt"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+							<!-- uatStartDate -->
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label">UAT Dates </label>
+								<div class="col-md-4">
+									<label class="text-muted mb-0" for="">from</label>
+									<div class="input-group">
+										<input class="form-control" type="text" name="uatStartDate" ngbDatepicker #dpuatStartDate="ngbDatepicker" [(ngModel)]="release.uatStartDate" />
+										<div class="input-group-append">
+											<button class="btn btn-outline-primary" (click)="dpuatStartDate.toggle()">
+												<i class="fas fa-calendar-alt"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<label class="text-muted mb-0" for="">to</label>
+									<div class="input-group">
+										<input class="form-control" type="text" name="uatEndDate" ngbDatepicker #dpuatEndDate="ngbDatepicker" [(ngModel)]="release.uatEndDate" />
+										<div class="input-group-append">
+											<button class="btn btn-outline-primary" (click)="dpuatEndDate.toggle()">
+												<i class="fas fa-calendar-alt"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- clientApproverName -->
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label">Client Approver </label>
+								<div class="col-md-6">
+
+									<input type="text" class="form-control" name="clientApproverName" [(ngModel)]="release.clientApproverName">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label class="col-md-3 col-form-label">Notes </label>
+								<div class="col-md-9">
+									<textarea class="form-control" name="notes" [(ngModel)]="release.notes">
+
+                                    </textarea>
+								</div>
+							</div>
+
+							<div class="text-right mt-4">
+								<button class="mx-2 btn btn-secondary" [routerLink]="['/release']">Cancel</button>
+
+								<span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
+									<button class="btn btn-primary w-25" type="submit">Save</button>
+								</span>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="row mt-3">
+				<div class="col-md-6">
+					<app-collapsible-card cardTitle="Features">
+						<div class="form-group">
+							<div class="input-group">
+								<select class="custom-select"></select>
+								<div class="input-group-prepend">
+									<button class="btn btn-success"> <i class="fas fa-plus"></i> Add</button>
+								</div>
+							</div>
+						</div>
+
+						<ul class="list-group ">
+							<li class="list-group-item active">
+								Active Features
+							</li>
+							<li class="list-group-item">Item 2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde est magni sequi, quo ratione ab hic odio odit voluptatem mollitia, adipisci in deleniti
+								aliquid, esse facilis autem temporibus. Possimus, delectus?</li>
+							<li class="list-group-item">Item 3</li>
+						</ul>
+					</app-collapsible-card>
+
+				</div>
+				<div class="col-md-6">
+					<app-collapsible-card cardTitle="Additional Work Items" startCollapsed="false">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" class="form-control">
+								<div class="input-group-prepend">
+									<button class="btn btn-success"> <i class="fas fa-plus    "></i> Add</button>
+								</div>
+							</div>
+						</div>
+
+						<ul class="list-group ">
+							<li class="list-group-item active">
+								Active Items
+							</li>
+							<li class="list-group-item">Item 2</li>
+							<li class="list-group-item">Item 3</li>
+						</ul>
+					</app-collapsible-card>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+	<pre>{{release | json}}</pre>
+	<br>
+</div>

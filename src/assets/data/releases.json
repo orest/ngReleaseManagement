@@ -1,40 +1,64 @@
 [
-  {
-    "releaseId": 1,
-    "applicationVersion": "3.5.3",
-    "clientId": 1,
-    "qaStartDate": "2019-09-19T11:27:52.207828-04:00",
-    "qatEndDate": "2019-10-19T11:27:52.207828-04:00",
-    "uatStartDate": "2019-10-19T11:27:52.207828-04:00",
-    "uatEndDate": "2019-11-18T11:27:52.207828-05:00",
-    "clientApproverName": "Bob the approver",
-    "notes": "Release Notes",
-    "iOsRelease": true,
-    "androidRelease": true,
-    "releasePlatforms": [
-
-    ],
-    "features": [
-
-    ]
-  },
-  {
-    "releaseId": 2,
-    "applicationVersion": "3.6.4",
-    "clientId": 2,
-    "qaStartDate": "2019-09-19T11:27:52.207828-04:00",
-    "qatEndDate": "2019-10-19T11:27:52.207828-04:00",
-    "uatStartDate": "2019-10-19T11:27:52.207828-04:00",
-    "uatEndDate": "2019-11-18T11:27:52.207828-05:00",
-    "clientApproverName": "Jane ",
-    "notes": "Release Notes 2",
-    "iOsRelease": true,
-    "androidRelease": true,
-    "releasePlatforms": [
-
-    ],
-    "features": [
-
-    ]
-  }
+	{
+		"releaseId": 1,
+		"applicationVersion": "3.5.3",
+		"clientId": 1,
+		"qaStartDate": "2019-09-19T11:27:52.207828-04:00",
+		"qatEndDate": "2019-10-19T11:27:52.207828-04:00",
+		"uatStartDate": "2019-10-19T11:27:52.207828-04:00",
+		"uatEndDate": "2019-11-18T11:27:52.207828-05:00",
+		"clientApproverName": "Bob the approver",
+		"notes": "Release Notes",
+		"iOsRelease": true,
+		"androidRelease": true,
+		"releasePlatforms": [
+			{
+				"id": 1,
+				"releaseId": 1,
+				"platformCode": "ios",
+				"submittedForApprovalDate": "2019-10-19T11:27:52.207828-04:00",
+				"availableInStoreDate": null
+			},
+			{
+				"id": 2,
+				"releaseId": 1,
+				"platformCode": "android",
+				"submittedForApprovalDate":  "2019-10-19T11:27:52.207828-04:00",
+				"availableInStoreDate": null
+			}
+		],
+		"statusCode": "completed",
+		"features": []
+	},
+	{
+		"releaseId": 2,
+		"applicationVersion": "3.6.4",
+		"clientId": 2,
+		"qaStartDate": "2019-09-19T11:27:52.207828-04:00",
+		"qatEndDate": "2019-10-19T11:27:52.207828-04:00",
+		"uatStartDate": "2019-10-19T11:27:52.207828-04:00",
+		"uatEndDate": "2019-11-18T11:27:52.207828-05:00",
+		"clientApproverName": "Jane ",
+		"notes": "Release Notes 2",
+		"iOsRelease": true,
+		"androidRelease": true,
+		"releasePlatforms": [
+			{
+				"id": 3,
+				"releaseId": 2,
+				"platformCode": "ios",
+				"submittedForApprovalDate": null,
+				"availableInStoreDate": null
+			},
+			{
+				"id": 4,
+				"releaseId": 2,
+				"platformCode": "android",
+				"submittedForApprovalDate": null,
+				"availableInStoreDate": null
+			}
+		],
+		"statusCode": "inprogress",
+		"features": []
+	}
 ]

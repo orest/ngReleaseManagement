@@ -1,85 +1,100 @@
 <div>
-    <form novalidate (ngSubmit)="save()" [formGroup]="featureForm">
-        <div class="container">
+	<form novalidate (ngSubmit)="save()" [formGroup]="featureForm">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class=" my-3 ">Manage Feature 
+					<small class="text-muted ">:: asdfsdfs some </small>	
+					</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
 
-            <div class="form-group row">
-                <label for="displayName" class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="displayName" formControlName="displayName">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="description" class="col-sm-2 col-form-label">Description</label>
-                <div class="col-sm-9">
-                    <textarea type="text" class="form-control" id="description" formControlName="description"> </textarea>
-                </div>
-            </div>
+					<div class="card">
+						<div class="card-body">
+							<div class="form-group row">
+								<label for="displayName" class="col-sm-2 col-form-label">Name</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="displayName" formControlName="displayName">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="description" class="col-sm-2 col-form-label">Description</label>
+								<div class="col-sm-9">
+									<textarea type="text" class="form-control" id="description" formControlName="description"> </textarea>
+								</div>
+							</div>
 
-            <div class="form-group row">
-                <label for="typeCode" class="col-sm-2 col-form-label">Type </label>
-                <div class="col-md-4">
-                    <select class="form-control" name="typeCode" id="typeCode" formControlName="typeCode">
-                        <option></option>
-                        <option [value]="type.value" *ngFor="let type of featureTypes"> {{type.text }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Status</label>
-                <div class="col-sm-9 pt-2">
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="statusNew" name="statusCode" value="new" formControlName="statusCode">
-                        <label class="custom-control-label" for="statusNew">New</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="statusInProgress" name="statusCode" value="inprogress" formControlName="statusCode">
-                        <label class="custom-control-label" for="statusInProgress">In Progress</label>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="form-group row">
-                <label for="startDate" class="col-sm-2 col-form-label">Start Date </label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="startDate" formControlName="startDate">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="endDate" class="col-sm-2 col-form-label">Completed Date </label>
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <input class="form-control" type="text" name="endDate" ngbDatepicker #dpEndDate="ngbDatepicker" formControlName="endDate" />
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" (click)="dpEndDate.toggle()">
-                                <i class="fas fa-calendar-alt"></i>
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="isCompleted" class="col-sm-2 col-form-label">Completed </label>
-                <div class="col-md-4">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="isCompleted" formControlName="isCompleted">
-                        <label class="custom-control-label" for="isCompleted"></label>
-                    </div>
-                </div>
-            </div>
+							<div class="form-group row">
+								<label for="typeCode" class="col-sm-2 col-form-label">Type </label>
+								<div class="col-md-4">
+									<select class="form-control" name="typeCode" id="typeCode" formControlName="typeCode">
+										<option></option>
+										<option [value]="type.value" *ngFor="let type of featureTypes"> {{type.text }}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="" class="col-sm-2 col-form-label">Status</label>
+								<div class="col-sm-9 pt-2">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="statusNew" name="statusCode" value="new" formControlName="statusCode">
+										<label class="custom-control-label" for="statusNew">New</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="statusInProgress" name="statusCode" value="inprogress" formControlName="statusCode">
+										<label class="custom-control-label" for="statusInProgress">In Progress</label>
+									</div>
+								</div>
+							</div>
 
 
-            <div class="form-group row">
-                    <div class="offset-sm-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary" [disabled]="!featureForm.valid">Save </button>
-                    </div>
-                </div>
-        </div>
+							<div class="form-group row">
+								<label for="startDate" class="col-sm-2 col-form-label">Start Date </label>
+								<div class="col-md-4">
+									<input type="text" class="form-control" id="startDate" formControlName="startDate">
+								</div>
+							</div>
 
-        {{featureForm.value|json}}
+							<div class="form-group row">
+								<label for="endDate" class="col-sm-2 col-form-label">Completed Date </label>
+								<div class="col-sm-4">
+									<div class="input-group">
+										<input class="form-control" type="text" name="endDate" ngbDatepicker #dpEndDate="ngbDatepicker" formControlName="endDate" />
+										<div class="input-group-append">
+											<button class="btn btn-primary" (click)="dpEndDate.toggle()">
+												<i class="fas fa-calendar-alt"></i>
+											</button>
+										</div>
 
-    </form>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="isCompleted" class="col-sm-2 col-form-label">Completed </label>
+								<div class="col-md-4">
+									<div class="custom-control custom-switch">
+										<input type="checkbox" class="custom-control-input" id="isCompleted" formControlName="isCompleted">
+										<label class="custom-control-label" for="isCompleted"></label>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="offset-sm-2 col-sm-10">
+									<button type="submit" class="btn btn-primary" [disabled]="!featureForm.valid">Save </button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		{{featureForm.value|json}}
+
+	</form>
 </div>

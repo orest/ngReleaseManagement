@@ -1,0 +1,49 @@
+<div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="my-3 ">Manage Releases
+				<small *ngIf="release" class="text-muted "> :: {{release.applicationVersion}}</small>
+			</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title text-muted">
+						Application Releases
+					</h5>
+					<table class="table table-striped table-bordered">
+						<thead class="thead-dark">
+							<tr>
+								<th>Version</th>
+								<th>Client</th>
+								<th>Status</th>
+								<th>Release Date</th>
+
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let release of releases">
+								<td> {{release.applicationVersion}}</td>
+								<td> {{release.clientId}}</td>
+								<td> {{release.statusCode}}</td>
+								<td>
+									<div *ngIf="release.releasePlatforms && release.releasePlatforms.length">
+										{{release.releasePlatforms[0].submittedForApprovalDate|date}}
+									</div>
+								</td>
+								<td>
+									<a [routerLink]="['/release', release.clientId]" routerLinkActive="router-link-active">Details</a>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

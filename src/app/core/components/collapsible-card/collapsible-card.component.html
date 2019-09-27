@@ -1,8 +1,16 @@
 <div class="card ">
-    <div class="card-header" (click)="toggle()"> {{cardTitle}} </div>
-    <div class="card-body" *ngIf="isVisible" >
-        <ng-content  >
+	<div class="card-header" (click)="toggle()">
+		<div class="d-flex justify-content-between">
+			<div>{{cardTitle}} </div>
+			<div>
+				<i class="fas fa-chevron-down" [hidden]="isVisible"></i>
+				<i class="fas fa-chevron-up" [hidden]="!isVisible"></i>
+			</div>
+		</div>
+	</div>
+	<div class="card-body" *ngIf="isVisible">
+		<ng-content>
 
-        </ng-content>
-    </div>
+		</ng-content>
+	</div>
 </div>
