@@ -1,5 +1,6 @@
+
 <div class="">
-	<form novalidate #frmClient="ngForm" (ngSubmit)="submitForm(frmClient)">
+	<form novalidate #frmClient="ngForm" (ngSubmit)="submitForm(frmClient.value)">
 		<div class="modal-header">
 			<h4 class="modal-title">
 				Manage Client
@@ -15,25 +16,33 @@
 						<img [src]="client.imageUrl" alt="" style="width: 200px" *ngIf="client.imageUrl">
 						<div class="text-right ">
 							<button class="btn btn-outline-secondary btn-sm ">
-								<i class="fas fa-upload    "></i>
+								<i class="fas fa-upload "></i>
 							</button>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label>Client Name:</label>
-					<em *ngIf="mouseOverSave || (frmClient.controls.clientName?.invalid && frmClient.controls.clientName?.touched) ">*Required </em>
+					<em *ngIf=" frmClient.controls.clientName?.invalid  && (mouseOverSave && frmClient.controls.clientName?.touched) ">*Required </em>
 					<input type="text" class="form-control" name="clientName" required [(ngModel)]="client.clientName" />
+				</div>
+				<div class="form-group ">
+					<label for="isCompleted">Active </label>
+					<div class="custom-control custom-switch">
+						<input type="checkbox" class="custom-control-input" name="isActive" id="isActive" [(ngModel)]="client.isActive">
+						<label class="custom-control-label" for="isActive"></label>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="modal-footer">
-			<span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
-				<button class="btn btn-primary" type="submit" [disabled]="frmClient.invalid">Save</button>
-			</span>
+		
 
 			<button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+			<span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false" class=" w-25">
+				<button class="btn btn-primary w-100" type="submit" [disabled]="frmClient.invalid">Save</button>
+			</span>
 		</div>
 
 	</form>

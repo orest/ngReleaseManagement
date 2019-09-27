@@ -1,47 +1,58 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 <div>
-    <p>client works!</p>
-    <h3>Clients</h3>
-    <div class="row">
-        <div class="col-8 offset-2">
-            <div class="text-right">
-                <button type="button" class="btn btn-primary" (click)="editClient()">
-                    <i class="fas fa-plus    "></i>
-                    Add New
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-8 offset-2">
-            <div class="card mt-3">
-                <div class="card-body p-0 m-0">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Client Name</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let client of clints">
-                                <td>
-                                    <img [src]="client.imageUrl" alt="" style="width: 80px">
-                                </td>
-                                <td>{{client.clientName}}</td>
-                                <td>
-                                    <button  (click)="editClient(client)">
-                                        <i class="fas fa-pencil-alt "></i>
 
-                                        Edit
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+	<div class="row">
+		<div class="col-10 offset-1">
+			<h4 class=" my-3 text-center">Manage Clients
 
-            </div>
-        </div>
-    </div>
+			</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-10 offset-1">
+			<div class="text-right">
+				<button type="button" class="btn btn-primary" (click)="editClient()">
+					<i class="fas fa-plus    "></i>
+					Add New
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-10 offset-1">
+			<div class="card mt-3">
+				<div class="card-body p-0 m-0">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Image</th>
+								<th>Client Name</th>
+								<th>Active</th>
+								<th style="width: 100px"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let client of clints">
+								<td>
+									<img [src]="client.imageUrl" alt="" style="width: 80px" *ngIf="client.imageUrl">
+								</td>
+								<td>{{client.clientName}}</td>
+								<td>
+									<i class="fas fa-check text-success" *ngIf="client.isActive"></i>
+								</td>
+								<td>
+									<button (click)="editClient(client)" class="btn btn-sm btn-link">
+										<i class="fas fa-pencil-alt "></i>
+										Edit
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </div>

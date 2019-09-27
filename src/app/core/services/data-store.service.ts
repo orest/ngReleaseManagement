@@ -35,7 +35,19 @@ export class DataStoreService {
 	// }
 
 	getClients(): Observable<Client[]> {
-		return this.http.get<Client[]>("../assets/data/clients.json").pipe(
+		return this.http.get<Client[]>(this.baseUrl + "Clients").pipe(
+			tap(data => console.log(data)),
+		);
+	}
+
+	createClient(client) {
+		return this.http.post<Client>(this.baseUrl + "Clients", client).pipe(
+			tap(data => console.log(data)),
+		);
+	}
+
+	updateClient(client) {
+		return this.http.put( `${this.baseUrl}Clients/${client.clientId}` , client).pipe(
 			tap(data => console.log(data)),
 		);
 	}
