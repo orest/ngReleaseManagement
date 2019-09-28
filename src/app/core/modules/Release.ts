@@ -9,12 +9,15 @@ export class Release {
 	uatStartDate: Date;
 	uatEndDate: Date;
 	clientApproverName: string;
-	notes: string;
-	iOsRelease: boolean;
-	androidRelease: boolean;
+	notes: string;	
 	features: any[];
 	statusCode: string  // New, InProgress, Completed 
 	releasePlatforms: ReleasePlatform[]
+
+	iOsRelease: boolean;
+	androidRelease: boolean;
+	iosPlatfrom:ReleasePlatform;
+	androidPlatfrom:ReleasePlatform
 	constructor() {
 
 	}

@@ -16,7 +16,7 @@ export class DateStringAdapterService implements NgbDateAdapter<Date> {
     const date = new Date(value);
     return {
       year: Number(date.getFullYear()),
-      month: Number(date.getMonth() + 1),
+      month: Number(date.getMonth() ),
       day: Number(date.getDate())
     };
   }

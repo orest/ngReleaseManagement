@@ -1,0 +1,8 @@
+<div class="input-group {{sizeCssClass}}">
+	<input class="form-control " type="text" ngbDatepicker #dp1="ngbDatepicker" [(ngModel)]="value" />
+	<div class="input-group-append">
+		<button type="button" class="btn btn-outline-primary" (click)="dp1.toggle()">
+			<i class="fas fa-calendar-alt"></i>
+		</button>
+	</div>
+</div>

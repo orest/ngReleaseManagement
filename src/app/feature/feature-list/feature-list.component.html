@@ -1,0 +1,45 @@
+<div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="my-3 ">Manage Features
+
+			</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="text-right mb-2">
+						<button type="button" class="btn btn-primary" (click)="addNew()">
+							<i class="fas fa-plus "></i> Add New </button>
+					</div>
+					<table class="table table-striped table-bordered">
+						<thead class="thead-dark">
+							<tr>
+								<th>Name</th>
+								<th>Status</th>								
+								<th>Complated Date</th>
+
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let feature of features">
+								<td> {{feature.displayName}}</td>
+								<td> {{feature.statusCode}}</td>
+								<td> {{feature.endDate|date:"MM/dd/yyy"}}</td>
+							
+								<td>
+									<a [routerLink]="['/feature', feature.featureId]" routerLinkActive="router-link-active">Details</a>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

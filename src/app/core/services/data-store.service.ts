@@ -4,6 +4,7 @@ import { Release } from "../modules/Release";
 import { of, from, pipe, Observable, Observer, BehaviorSubject } from "rxjs";
 import { tap, map, filter } from 'rxjs/operators';
 import { Client } from '../modules/Client';
+import { Feature } from '../modules/Feature';
 
 @Injectable({
 	providedIn: "root"
@@ -13,26 +14,24 @@ export class DataStoreService {
 	constructor(private http: HttpClient) { }
 
 	getFeatures() {
-		this.http.get<any[]>(this.baseUrl + "/features");
+		return this.http.get<Feature[]>(this.baseUrl + "features");
+	}
+	getFeature(id) {
+		return this.http.get<Feature>(this.baseUrl + "features/" + id);
 	}
 
-	getReleases(): Observable<Release[]> {
-		return this.http.get<Release[]>("../assets/data/releases.json").pipe(
+	createFeature(feature) {
+		return this.http.post<Feature>(this.baseUrl + "features", feature).pipe(
 			tap(data => console.log(data)),
 		);
 	}
 
-	getRelease(id): Observable<Release> {
-		return this.http.get<Release[]>("../assets/data/releases.json").pipe(
-			map(data => data.find(p => p.releaseId === id))
+	updateFeature(feature, id) {
+		feature.featureId = id;
+		return this.http.put<Feature>(`${this.baseUrl}features/${id}`, feature).pipe(
+			tap(data => console.log(data)),
 		);
 	}
-
-	// getClients(): Observable<Release[]> {
-	//   return this.http.get<Release[]>("../assets/data/clients.json").pipe(
-	//     tap(data => console.log(data)),
-	//   );
-	// }
 
 	getClients(): Observable<Client[]> {
 		return this.http.get<Client[]>(this.baseUrl + "Clients").pipe(
@@ -47,7 +46,7 @@ export class DataStoreService {
 	}
 
 	updateClient(client) {
-		return this.http.put( `${this.baseUrl}Clients/${client.clientId}` , client).pipe(
+		return this.http.put(`${this.baseUrl}Clients/${client.clientId}`, client).pipe(
 			tap(data => console.log(data)),
 		);
 	}

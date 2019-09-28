@@ -21,6 +21,9 @@ import { ManageClientComponent } from './client/manage-client/manage-client.comp
 import { CollapsibleCardComponent } from './core/components/collapsible-card/collapsible-card.component';
 import { ReleaseListComponent } from './release/release-list/release-list.component';
 import { ReleaseDetailsComponent } from './release/release-details/release-details.component';
+import { FeatureListComponent } from './feature/feature-list/feature-list.component';
+import { FeatureDetailsComponent } from './feature/feature-details/feature-details.component';
+import { DateInputGroupComponent } from './core/components/date-input-group/date-input-group.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { ReleaseDetailsComponent } from './release/release-details/release-detai
     ReleaseDetailsComponent,
     FeatureComponent,
     ManageClientComponent,
-    CollapsibleCardComponent
+    CollapsibleCardComponent,
+    FeatureListComponent,
+    FeatureDetailsComponent,
+    DateInputGroupComponent
   ],
   imports: [
     BrowserModule,

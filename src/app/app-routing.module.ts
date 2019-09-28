@@ -7,12 +7,15 @@ import { FeatureComponent } from './feature/feature.component';
 
 import { ReleaseDetailsComponent } from './release/release-details/release-details.component';
 import { ReleaseListComponent } from './release/release-list/release-list.component';
+import { FeatureListComponent } from './feature/feature-list/feature-list.component';
+import { FeatureDetailsComponent } from './feature/feature-details/feature-details.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'client', component: ClientComponent },
   { path: 'reports', component: ReportsComponent },
-  { path: 'feature', component: FeatureComponent },
+  { path: 'feature/:id', component: FeatureDetailsComponent },
+  { path: 'feature', component: FeatureListComponent },
   { path: 'release/:id', component: ReleaseDetailsComponent },
   { path: 'release', component: ReleaseListComponent },
   {
