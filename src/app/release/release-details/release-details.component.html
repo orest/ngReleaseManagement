@@ -1,19 +1,19 @@
 <div>
 	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
-	<form name="frmRelease" #frmRelease="ngForm" (ngSubmit)="submitForm(frmRelease)">
-		<div class="row">
-			<div class="col-md-12">
-				<h3 class=" my-3 ">Manage Release
-					<small *ngIf="release" class="text-muted "> :: {{release.applicationVersion}}</small>
-				</h3>
-			</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class=" my-3 ">Manage Release
+				<small *ngIf="release" class="text-muted "> :: {{release.applicationVersion}}</small>
+			</h3>
 		</div>
+	</div>
 
-		<div *ngIf="release">
-			<div class="row">
-				<div class="col-md-12 ">
-					<div class="card">
-
+	<div *ngIf="release">
+		<div class="row">
+			<div class="col-md-12 ">
+				<div class="card">
+					<form name="frmRelease" #frmRelease="ngForm" (ngSubmit)="submitForm(frmRelease)">
 						<div class="card-body">
 							<!-- Version -->
 							<div class="form-group row">
@@ -25,58 +25,58 @@
 
 							<!-- Platform -->
 							<div class="form-group row">
-									<label class="col-md-2 col-form-label">Platform</label>
-									<div class="col-md-5">
-										<div class="">
-											<div class="btn-group btn-group-toggle">
-												<label class="btn-light " ngbButtonLabel>
-													<input ngbButton name="iOsRelease" type="checkbox" [(ngModel)]="release.iOsRelease">
-													<i class="fab fa-apple"></i> iOs
-												</label>
-												<label class="btn-light " ngbButtonLabel>
-													<input ngbButton name="androidRelease" type="checkbox" [(ngModel)]="release.androidRelease">
-													<i class="fab fa-android"></i> Android
-												</label>
-											</div>
-										</div>
-										<div>
-											<table class="table table-borderless table-light table-sm mt-3" [hidden]="!release.androidRelease && !release.iOsRelease">
-												<thead>
-													<tr>
-														<th> Platform </th>
-														<th> Submitted Date </th>
-														<th> In Store Date </th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr *ngIf="release.iOsRelease">
-														<td>iOS</td>
-														<td>
-															<app-date-input-group [(ngModel)]="release.iosPlatfrom.submittedForApprovalDate" name="i-submittedForApprovalDate" size="sm">
-															</app-date-input-group>
-														</td>
-														<td>
-															<app-date-input-group [(ngModel)]="release.iosPlatfrom.availableInStoreDate" name="i-availableInStoreDate" size="sm"></app-date-input-group>
-														</td>
-													</tr>
-													<tr *ngIf="release.androidRelease">
-														<td>Android</td>
-														<td>
-															<app-date-input-group [(ngModel)]="release.androidPlatfrom.submittedForApprovalDate" name="a-submittedForApprovalDate" size="sm">
-															</app-date-input-group>
-														</td>
-														<td>
-															<app-date-input-group [(ngModel)]="release.androidPlatfrom.availableInStoreDate" name="a-availableInStoreDate" size="sm">
-															</app-date-input-group>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-	
+								<label class="col-md-2 col-form-label">Platform</label>
+								<div class="col-md-5">
+									<div class="">
+										<div class="btn-group btn-group-toggle">
+											<label class="btn-light " ngbButtonLabel>
+												<input ngbButton name="iOsRelease" type="checkbox" [(ngModel)]="release.iOsRelease">
+												<i class="fab fa-apple"></i> iOs
+											</label>
+											<label class="btn-light " ngbButtonLabel>
+												<input ngbButton name="androidRelease" type="checkbox" [(ngModel)]="release.androidRelease">
+												<i class="fab fa-android"></i> Android
+											</label>
 										</div>
 									</div>
+									<div>
+										<table class="table table-borderless table-light table-sm mt-3" [hidden]="!release.androidRelease && !release.iOsRelease">
+											<thead>
+												<tr>
+													<th> Platform </th>
+													<th> Submitted Date </th>
+													<th> In Store Date </th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr *ngIf="release.iOsRelease">
+													<td>iOS</td>
+													<td>
+														<app-date-input-group [(ngModel)]="release.iosPlatfrom.submittedForApprovalDate" name="i-submittedForApprovalDate" size="sm">
+														</app-date-input-group>
+													</td>
+													<td>
+														<app-date-input-group [(ngModel)]="release.iosPlatfrom.availableInStoreDate" name="i-availableInStoreDate" size="sm"></app-date-input-group>
+													</td>
+												</tr>
+												<tr *ngIf="release.androidRelease">
+													<td>Android</td>
+													<td>
+														<app-date-input-group [(ngModel)]="release.androidPlatfrom.submittedForApprovalDate" name="a-submittedForApprovalDate" size="sm">
+														</app-date-input-group>
+													</td>
+													<td>
+														<app-date-input-group [(ngModel)]="release.androidPlatfrom.availableInStoreDate" name="a-availableInStoreDate" size="sm">
+														</app-date-input-group>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
 								</div>
-	
+							</div>
+
 
 							<!-- Status -->
 							<div class="form-group row">
@@ -96,7 +96,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<!-- Client -->
 							<div class="form-group row">
 								<label class="col-md-2 col-form-label">Client</label>
@@ -194,58 +194,68 @@
 
 							</div>
 						</div>
-
-					</div>
-				</div>
-			</div>
-			<div class="row mt-3">
-				<div class="col-md-6">
-					<app-collapsible-card cardTitle="Features">
-						<div class="form-group">
-							<div class="input-group">
-								<select class="custom-select"></select>
-								<div class="input-group-prepend">
-									<button class="btn btn-success"> <i class="fas fa-plus"></i> Add</button>
-								</div>
-							</div>
-						</div>
-
-						<ul class="list-group ">
-							<li class="list-group-item active">
-								Active Features
-							</li>
-							<li class="list-group-item">Item 2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde est magni sequi, quo ratione ab hic odio odit voluptatem mollitia,
-								adipisci in deleniti
-								aliquid, esse facilis autem temporibus. Possimus, delectus?</li>
-							<li class="list-group-item">Item 3</li>
-						</ul>
-					</app-collapsible-card>
-
-				</div>
-				<div class="col-md-6">
-					<app-collapsible-card cardTitle="Additional Work Items" startCollapsed="false">
-						<div class="form-group">
-							<div class="input-group">
-								<input type="text" class="form-control">
-								<div class="input-group-prepend">
-									<button class="btn btn-success"> <i class="fas fa-plus    "></i> Add</button>
-								</div>
-							</div>
-						</div>
-
-						<ul class="list-group ">
-							<li class="list-group-item active">
-								Active Items
-							</li>
-							<li class="list-group-item">Item 2</li>
-							<li class="list-group-item">Item 3</li>
-						</ul>
-					</app-collapsible-card>
+					</form>
 				</div>
 			</div>
 		</div>
+		<div class="row mt-3">
+			<div class="col-md-6">
+				<app-collapsible-card cardTitle="Features">
+					<div class="form-group">
+						<div class="input-group">
+							<select class="custom-select" [(ngModel)]="newFeatureId" name="newFeatureId">
+								<option value=""></option>
+								<option [value]="feature.featureId" *ngFor="let feature of features">{{feature.displayName}}</option>
+							</select>
+							<div class="input-group-prepend">
+								<button class="btn btn-success" type="button" (click)="addFeature()"> <i class="fas fa-plus"></i> Add</button>
+							</div>
+						</div>
+					</div>
 
-	</form>
+					<ul class="list-group ">
+						<li class="list-group-item" *ngFor="let feature of release.features">
+							<div class="d-flex justify-content-between">
+								<span>{{feature.displayName}}</span>
+								<div>
+									<button type="button" class="btn btn-danger btn-sm" (click)="removeFeature(feature)">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</app-collapsible-card>
+
+			</div>
+			<div class="col-md-6">
+				<app-collapsible-card cardTitle="Additional Work Items" startCollapsed="false">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" [(ngModel)]="workItemTitle">
+							<div class="input-group-prepend">
+								<button type="button" class="btn btn-success" (click)="addWrokItem()"> <i class="fas fa-plus"></i> Add</button>
+							</div>
+						</div>
+					</div>
+
+					<ul class="list-group ">
+						<li class="list-group-item" *ngFor="let workItem of release.workItems">
+							<div class="d-flex justify-content-between">
+								<span> {{workItem.title }}</span>
+								<div>
+									<button type="button" class="btn btn-danger btn-sm" (click)="removeWorkItem(workItem)">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</app-collapsible-card>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- <pre>{{release | json}}</pre> -->
 	<br>

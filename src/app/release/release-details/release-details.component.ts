@@ -6,6 +6,7 @@ import { Client } from '../../core/modules/Client';
 import { ReleaseService } from '../release.service';
 import { Route } from '@angular/compiler/src/core';
 import { ReleasePlatform } from '../../core/modules/ReleasePlatform';
+import { Feature } from 'src/app/core/modules/Feature';
 
 @Component({
 
@@ -22,7 +23,10 @@ export class ReleaseDetailsComponent implements OnInit {
 	private sub: any;
 	release: Release;
 	clients: Client[] = [];
+	features: Feature[] = [];
 	loading: boolean = false
+	newFeatureId: number = 0;
+	workItemTitle: string = "";
 
 	constructor(private route: ActivatedRoute, private dataService: DataStoreService,
 		private releaseService: ReleaseService,
@@ -32,12 +36,13 @@ export class ReleaseDetailsComponent implements OnInit {
 		this.sub = this.route.params.subscribe(params => {
 			this.id = +params.id;
 			if (this.id > 0) {
-				this.loading = true;
-				this.releaseService.getRelease(this.id).subscribe(r => {
-					this.release = r;
-					this.loading = false;
-					console.log(this.release)
-				});
+				// this.loading = true;
+				// this.releaseService.getRelease(this.id).subscribe(r => {
+				// 	this.release = r;
+				// 	this.loading = false;
+				// 	console.log(this.release)
+				// });
+				this.getReleaseInfo();
 			} else {
 				this.release = new Release();
 				this.release.iosPlatfrom = this.releaseService.getPlatform("ios", 0);
@@ -47,10 +52,21 @@ export class ReleaseDetailsComponent implements OnInit {
 
 
 		this.dataService.getClients().subscribe(data => {
-			if (data) {
-				this.clients = data;
-			}
+			this.clients = data;
 		})
+
+		this.dataService.getFeatures().subscribe(response => {
+			this.features = response;
+		})
+	}
+
+	getReleaseInfo() {
+		this.loading = true;
+		this.releaseService.getRelease(this.id).subscribe(r => {
+			this.release = r;
+			this.loading = false;
+
+		});
 	}
 
 	submitForm(form) {
@@ -67,5 +83,40 @@ export class ReleaseDetailsComponent implements OnInit {
 				})
 			}
 		}
+	}
+
+	addFeature() {
+		if (this.newFeatureId) {
+			const feature = this.features.find(p => p.featureId == this.newFeatureId);
+			if (feature) {
+				this.releaseService.assingFeatureToRelease(this.id, feature).subscribe(p => {
+					this.getReleaseInfo();
+				})
+			}
+		}
+	}
+
+	removeFeature(f) {
+		console.log(f)
+	}
+
+	addWrokItem() {
+		let workItem = {
+			releaseId: this.id,
+			title: this.workItemTitle,
+			typeCode: "enhancement"
+		}
+
+		this.releaseService.addWrokItemToRelease(workItem).subscribe(response => {
+			this.getReleaseInfo();
+			this.workItemTitle = "";
+		});
+	}
+
+	removeWorkItem(workItem){
+		this.releaseService.removeWorkItem(workItem).subscribe(response => {
+			this.getReleaseInfo();
+			this.workItemTitle = "";
+		});
 	}
 }

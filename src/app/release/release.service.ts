@@ -28,11 +28,11 @@ export class ReleaseService {
 				data.iOsRelease = !!(data.iosPlatfrom);
 				data.androidRelease = !!(data.androidPlatfrom);
 				if (!data.iOsRelease) {
-					data.iosPlatfrom = this.getPlatform( "ios", id)
+					data.iosPlatfrom = this.getPlatform("ios", id)
 				}
 
 				if (!data.androidPlatfrom) {
-					data.androidPlatfrom = this.getPlatform( "android", id)
+					data.androidPlatfrom = this.getPlatform("android", id)
 				}
 
 				data.releasePlatforms = [];
@@ -50,7 +50,7 @@ export class ReleaseService {
 		if (release.androidRelease) {
 			release.releasePlatforms.push(release.androidPlatfrom)
 		}
-		
+
 		return this.http.post<Release>(`${this.baseUrl}Releases/`, release).pipe(
 			tap(data => console.log(data)),
 			catchError(this.handleError)
@@ -71,18 +71,35 @@ export class ReleaseService {
 		);
 	}
 
-	assingFeatureToRelease(featureId) {
-
+	assingFeatureToRelease(releaseId, feature) {
+		var url = `${this.baseUrl}/Releases/${releaseId}/assign`;
+		return this.http.post<Release>(url, feature).pipe(
+			tap(data => console.log(data)),
+			catchError(this.handleError)
+		);
 	}
 
 	removeFeatureFromRelease(featureId) {
 
 	}
 
-
 	addWrokItemToRelease(workItem) {
-
+		var url = `${this.baseUrl}/WorkItems`;
+		return this.http.post<Release>(url, workItem).pipe(
+			tap(data => console.log(data)),
+			catchError(this.handleError)
+		);
 	}
+
+	removeWorkItem(workItem) {
+		var url = `${this.baseUrl}/WorkItems/${workItem.workItemId}`;
+		return this.http.delete<boolean>(url).pipe(
+			tap(data => console.log(data)),
+			map(p => { return true }),
+			catchError(this.handleError)
+		);
+	}
+
 
 	getPlatform(platformCode, id) {
 		let platfrom = new ReleasePlatform();
