@@ -1,14 +1,117 @@
 <div>
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
-  <div class="card" *ngFor="let release of upcomingReleases">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+    <div class="mt-3" *ngFor="let release of upcomingReleases">
+        <app-collapsible-card startCollapsed="false" [cardTitle]="release.title">
+            <!-- <div class="card-title">
+                {{release.clientName}} - {{release.applicationVersion}}
+            </div> -->
+            <div>
+                <section>
+                    <h5>Dates</h5>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>QA Starts</th>
+                                <th>QA Ends</th>
+                                <th>UAT Starts</th>
+                                <th>UAT Ends</th>
+                                <th>Release </th>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="bg-warning text-white">5 days </td>
+                                <td class="bg-white">10 days </td>
+                                <td class="bg-success  text-white">15 days </td>
+                                <td class="bg-success  text-white">20 days </td>
+                                <td class="bg-success  text-white">30 days </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </section>
+                <!-- <section class="mb-4">
+                    <h5>Features</h5>
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">Title </th>
+                                <th class="border-top-0">API</th>
+                                <th class="border-top-0">UI</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </td>
+                            <td>
+                                <i class="fas fa-check"></i>
+                            </td>
+                            <td style="width:120px">
 
-    <div class="card-body">
-      {{release.clientName}}
-      {{release.applicationVersion}}
-      <a [routerLink]="['/release', release.releaseId]" routerLinkActive="router-link-active">
-        {{release.applicationVersion}}
-      </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </td>
+                            <td style="width:120px">
+                                NA
+                            </td>
+                            <td>
+                                <i class="fas fa-check"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </section> -->
+
+
+                <section class="mb-4">
+                    <h5>Other Work Items</h5>
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">Title </th>
+                                <th class="border-top-0">Type</th>
+                                <th class="border-top-0">API</th>
+                                <th class="border-top-0">UI</th>
+                                <th class="border-top-0 ">Status </th>
+                            </tr>
+                        </thead>
+                        <tr *ngFor="let item of release.releaseItems">
+                            <td>
+                                {{item.title}} </td>
+                            <td [ngClass]="{'text-danger': item.type=='Bug'}">
+                                <i class="fas " [ngClass]="{'fa-bug': item.type=='Bug'}"></i>
+                                {{item.type}}
+                            </td>
+                            <td>
+                                <i *ngIf="item.apiCompleted" class="fas fa-check "></i>
+                            </td>
+                            <td>
+                                <i *ngIf="item.uiCompleted" class="fas fa-check"></i>
+                            </td>
+
+                            <td class="item-status">
+
+                                <span [innerHTML]="item.status|workItemStatus"></span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </section>
+
+                <!-- <dl class="row">
+                    <dt class="col-sm-2">Days Untill QA</dt>
+                    <dd class="col-sm-9">{{release.daysUntilQa}}</dd>
+
+                    <dt class="col-sm-2">Days Untill UAT</dt>
+                    <dd class="col-sm-9">{{release.daysUntilUAT}}</dd>
+                </dl> -->
+                <hr>
+
+                <div class="text-right">
+                    <a [routerLink]="['/release', release.releaseId]" class="btn btn-secondary ">
+                        <i class="fas fa-pencil-alt"></i>
+                        Edit {{release.applicationVersion}}
+                    </a>
+
+                </div>
+            </div>
+        </app-collapsible-card>
     </div>
 
-  </div>
 </div>

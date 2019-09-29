@@ -21,6 +21,8 @@ import { ManageClientComponent } from './client/manage-client/manage-client.comp
 import { CollapsibleCardComponent } from './core/components/collapsible-card/collapsible-card.component';
 import { ReleaseListComponent } from './release/release-list/release-list.component';
 import { ReleaseDetailsComponent } from './release/release-details/release-details.component';
+import { WorkItemStatusPipe } from './core/pipes/work-item-status.pipe';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ReleaseDetailsComponent } from './release/release-details/release-detai
     ReleaseDetailsComponent,
     FeatureComponent,
     ManageClientComponent,
-    CollapsibleCardComponent
+    CollapsibleCardComponent,
+    WorkItemStatusPipe,
+    
   ],
   imports: [
     BrowserModule,
