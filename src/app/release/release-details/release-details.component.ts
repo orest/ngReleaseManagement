@@ -27,11 +27,16 @@ export class ReleaseDetailsComponent implements OnInit {
   loading = false;
   mouseOverSave = false;
   newFeatureId = 0;
-  workItemTitle = "";
+  workItem = {
+    releaseId: 0,
+    title: "",
+    typeCode: "maintenance",//Bug, Enhancement, Maintenance
+    statusCode: "new"
+  };
 
   constructor(private route: ActivatedRoute, private dataService: DataStoreService,
-    private releaseService: ReleaseService,
-    private router: Router) { }
+              private releaseService: ReleaseService,
+              private router: Router) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -102,22 +107,23 @@ export class ReleaseDetailsComponent implements OnInit {
   }
 
   addWrokItem() {
-    let workItem = {
-      releaseId: this.id,
-      title: this.workItemTitle,
-      typeCode: "enhancement"
-    }
+    // let workItem = {
+    //   releaseId: this.id,
+    //   title: this.workItemTitle,
+    //   typeCode: "enhancement"
+    // }
+    this.workItem.releaseId = this.id;
 
-    this.releaseService.addWrokItemToRelease(workItem).subscribe(response => {
+    this.releaseService.addWrokItemToRelease(this.workItem).subscribe(response => {
       this.getReleaseInfo();
-      this.workItemTitle = "";
+      //this.workItem = "";
     });
   }
 
   removeWorkItem(workItem) {
     this.releaseService.removeWorkItem(workItem).subscribe(response => {
       this.getReleaseInfo();
-      this.workItemTitle = "";
+      //this.workItemTitle = "";
     });
   }
 }

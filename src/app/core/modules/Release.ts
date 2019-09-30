@@ -5,6 +5,7 @@ export class Release {
   releaseId: number;
   applicationVersion: string;
   clientId: number;
+  releaseDate:Date;
   qaStartDate: Date;
   qaEndDate: Date;
   uatStartDate: Date;

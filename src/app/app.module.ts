@@ -23,6 +23,8 @@ import { ReleaseListComponent } from './release/release-list/release-list.compon
 import { ReleaseDetailsComponent } from './release/release-details/release-details.component';
 import { FeatureListComponent } from './feature/feature-list/feature-list.component';
 import { FeatureDetailsComponent } from './feature/feature-details/feature-details.component';
+import { WorkItemStatusPipe } from './core/pipes/work-item-status.pipe';
+
 import { DateInputGroupComponent } from './core/components/date-input-group/date-input-group.component';
 
 @NgModule({
@@ -40,6 +42,8 @@ import { DateInputGroupComponent } from './core/components/date-input-group/date
     CollapsibleCardComponent,
     FeatureListComponent,
     FeatureDetailsComponent,
+    WorkItemStatusPipe,
+    
     DateInputGroupComponent
   ],
   imports: [

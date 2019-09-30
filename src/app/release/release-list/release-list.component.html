@@ -32,9 +32,7 @@
 								<td> {{release.client.clientName}}</td>
 								<td> {{release.statusCode}}</td>
 								<td>
-									<div *ngIf="release.releasePlatforms && release.releasePlatforms.length">
-										{{release.releasePlatforms[0].submittedForApprovalDate|date}}
-									</div>
+                    {{release.releaseDate|date}}
 								</td>
 								<td>
 									<a [routerLink]="['/release', release.releaseId]" >Details</a>
