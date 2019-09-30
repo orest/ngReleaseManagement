@@ -5,67 +5,70 @@ import { of, from, pipe, Observable, Observer, BehaviorSubject } from "rxjs";
 import { tap, map, filter } from 'rxjs/operators';
 import { Client } from '../modules/Client';
 import { Feature } from '../modules/Feature';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
-	providedIn: "root"
+  providedIn: "root"
 })
 export class DataStoreService {
-	private baseUrl = "api/";
-	constructor(private http: HttpClient) { }
+  //private baseUrl = "api/";
+  private baseUrl = environment.baseUrl;
 
-	getFeatures() {
-		return this.http.get<Feature[]>(this.baseUrl + "features");
-	}
-	getFeature(id) {
-		return this.http.get<Feature>(this.baseUrl + "features/" + id);
-	}
+  constructor(private http: HttpClient) { }
 
-	createFeature(feature) {
-		return this.http.post<Feature>(this.baseUrl + "features", feature).pipe(
-			tap(data => console.log(data)),
-		);
-	}
+  getFeatures() {
+    return this.http.get<Feature[]>(this.baseUrl + "features");
+  }
+  getFeature(id) {
+    return this.http.get<Feature>(this.baseUrl + "features/" + id);
+  }
 
-	updateFeature(feature, id) {
-		feature.featureId = id;
-		return this.http.put<Feature>(`${this.baseUrl}features/${id}`, feature).pipe(
-			tap(data => console.log(data)),
-		);
-	}
+  createFeature(feature) {
+    return this.http.post<Feature>(this.baseUrl + "features", feature).pipe(
+      tap(data => console.log(data)),
+    );
+  }
 
-	getClients(): Observable<Client[]> {
-		return this.http.get<Client[]>(this.baseUrl + "Clients").pipe(
-			tap(data => console.log(data)),
-		);
-	}
+  updateFeature(feature, id) {
+    feature.featureId = id;
+    return this.http.put<Feature>(`${this.baseUrl}features/${id}`, feature).pipe(
+      tap(data => console.log(data)),
+    );
+  }
 
-	createClient(client) {
-		return this.http.post<Client>(this.baseUrl + "Clients", client).pipe(
-			tap(data => console.log(data)),
-		);
-	}
+  getClients(): Observable<Client[]> {
+    return this.http.get<Client[]>(this.baseUrl + "Clients").pipe(
+      tap(data => console.log(data)),
+    );
+  }
 
-	updateClient(client) {
-		return this.http.put(`${this.baseUrl}Clients/${client.clientId}`, client).pipe(
-			tap(data => console.log(data)),
-		);
-	}
+  createClient(client) {
+    return this.http.post<Client>(this.baseUrl + "Clients", client).pipe(
+      tap(data => console.log(data)),
+    );
+  }
 
-	//lookups 
-	getFeatureStatusCodes() {
-		this.http.get<any[]>(this.baseUrl + "/lookup/feature-status-codes");
-	}
-	getFeatureTypeCodes() {
-		this.http.get<any[]>(this.baseUrl + "/lookup/feature-type-codes");
-	}
+  updateClient(client) {
+    return this.http.put(`${this.baseUrl}Clients/${client.clientId}`, client).pipe(
+      tap(data => console.log(data)),
+    );
+  }
 
-	getReleaseStatusCodes() {
-		this.http.get<any[]>(this.baseUrl + "/lookup/release-status-codes");
-	}
+  //lookups
+  getFeatureStatusCodes() {
+    this.http.get<any[]>(this.baseUrl + "/lookup/feature-status-codes");
+  }
+  getFeatureTypeCodes() {
+    this.http.get<any[]>(this.baseUrl + "/lookup/feature-type-codes");
+  }
 
-	getWorkItemTypes() {
-		this.http.get<any[]>(this.baseUrl + "/lookup/work-item-types");
-	}
+  getReleaseStatusCodes() {
+    this.http.get<any[]>(this.baseUrl + "/lookup/release-status-codes");
+  }
+
+  getWorkItemTypes() {
+    this.http.get<any[]>(this.baseUrl + "/lookup/work-item-types");
+  }
 
 
 }

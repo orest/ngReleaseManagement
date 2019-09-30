@@ -5,76 +5,76 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 import { DataStoreService } from '../../core/services/data-store.service';
 
 @Component({
-	selector: 'app-feature-details',
-	templateUrl: './feature-details.component.html',
-	styles: []
+  selector: 'app-feature-details',
+  templateUrl: './feature-details.component.html',
+  styles: []
 })
 export class FeatureDetailsComponent implements OnInit {
-	featureForm: FormGroup;
-	private sub: any;
-	id: number;
+  featureForm: FormGroup;
+  private sub: any;
+  id: number;
 
-	feature: Feature;
-	featureTypes = [
-		{ value: "core", text: "Core" },
-		{ value: "client", text: "Client" },
-	]
+  feature: Feature;
+  featureTypes = [
+    { value: "core", text: "Core" },
+    { value: "client", text: "Client" },
+  ]
 
-	constructor(private fb: FormBuilder,
-		private route: ActivatedRoute,
-		private dataService: DataStoreService,
-		private router: Router) {
+  constructor(private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private dataService: DataStoreService,
+    private router: Router) {
 
-	}
+  }
 
-	ngOnInit() {
-		this.featureForm = this.fb.group({
-			displayName: ["", [Validators.required, Validators.maxLength(50)]],
-			description: "",
-			typeCode: "core",
-			statusCode: ["new", Validators.required],
-			startDate: null,
-			endDate: null,
-			isCompleted: false
-		})
+  ngOnInit() {
+    this.featureForm = this.fb.group({
+      displayName: ["", [Validators.required, Validators.maxLength(50)]],
+      description: "",
+      statusCode: ["new", Validators.required],
+      startDate: null,
+      endDate: null,
+      isApiCompleted: false,
+      isUiCompleted: false
+    });
 
-		this.sub = this.route.params.subscribe(params => {
-			this.id = +params.id;
-			if (this.id > 0) {
-				this.dataService.getFeature(this.id).subscribe(response => {
-			
-					this.feature = response;
-					this.featureForm.patchValue({
-						displayName: response.displayName,
-						description: response.description,
-						typeCode: response.typeCode,
-						statusCode: response.statusCode,
-						startDate: response.startDate,
-						endDate: response.endDate,
-						isCompleted: response.isCompleted
-					})
-				});
-			} else {
-				this.feature = new Feature();
-			}
-		});
+    this.sub = this.route.params.subscribe(params => {
+      this.id = +params.id;
+      if (this.id > 0) {
+        this.dataService.getFeature(this.id).subscribe(response => {
+
+          this.feature = response;
+          this.featureForm.patchValue({
+            displayName: response.displayName,
+            description: response.description,
+            //typeCode: response.typeCode,
+            statusCode: response.statusCode,
+            startDate: response.startDate,
+            endDate: response.endDate,
+            isApiCompleted: response.isApiCompleted,
+            isUiCompleted: response.isUiCompleted
+          });
+        });
+      } else {
+        this.feature = new Feature();
+      }
+    });
 
 
-		//	this.featureForm.get("displayName").valueChanges.subscribe(value => console.log(value))
-	}
-	save() {
-		if (this.id === 0) {
-			this.dataService.createFeature(this.featureForm.value).subscribe(data => {
-				this.router.navigate(["feature"])
-			});
-		} else {
-			
-			this.dataService.updateFeature(this.featureForm.value, this.id).subscribe(data => {
-				this.router.navigate(["feature"])
-			});
-		}
+    //	this.featureForm.get("displayName").valueChanges.subscribe(value => console.log(value))
+  }
+  save() {
+    if (this.id === 0) {
+      this.dataService.createFeature(this.featureForm.value).subscribe(data => {
+        this.router.navigate(["feature"])
+      });
+    } else {
 
-		console.log(this.featureForm.value)
-	}
+      this.dataService.updateFeature(this.featureForm.value, this.id).subscribe(data => {
+        this.router.navigate(["feature"]);
+      });
+    }
+    console.log(this.featureForm.value);
+  }
 
 }
