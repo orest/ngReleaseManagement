@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     //   this.loading = false;
     // }.bind(this), 2000);
 
-    forkJoin([this.releaseService.getReleases(), this.dataService.getClients()]).subscribe(results => {
+    forkJoin([this.releaseService.getUpcomingReleases(), this.dataService.getClients()]).subscribe(results => {
       this.loading = false;
       this.releases = results[0];
       this.clients = results[1];

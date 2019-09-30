@@ -50,3 +50,5 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 ---
 npm install moment --save
+
+ng build --prod --base-href="/ra/"

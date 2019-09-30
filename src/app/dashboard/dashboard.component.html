@@ -2,14 +2,10 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
   <div class="mt-3" *ngFor="let release of upcomingReleases">
     <app-collapsible-card startCollapsed="false" cardTitle="{{release.client.clientName + '  - ' + release.applicationVersion + ' ' + release.daysUntilText}} ">
-      <!-- <div class="card-title">
-                {{release.clientName}} - {{release.applicationVersion}}
-            </div> -->
 
       <div>
         <section>
-
-          <table class="table  table-bordered table-dark">
+          <table class="table  table-bordered table-success">
             <thead>
               <tr>
                 <th>QA Starts</th>
@@ -18,7 +14,7 @@
                 <th>UAT Ends</th>
                 <th>Release </th>
               </tr>
-              <tr class="text-center">
+              <tr >
                 <td>{{release.daysUntilText2}} </td>
                 <td>{{release.qaEndDateText}} </td>
                 <td>{{release.uatStartDateText}} </td>
@@ -29,7 +25,7 @@
           </table>
         </section>
         <section class="mb-4">
-          <table class="table ">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th class="border-top-0">Title </th>
@@ -39,24 +35,27 @@
                 <!-- <th class="border-top-0 ">Status </th> -->
               </tr>
             </thead>
-            <tr *ngFor="let item of release.releaseItems">
-              <td>
-                {{item.title}} </td>
-              <td [ngClass]="{'text-danger': item.type=='Bug'}">
-                <i class="fas " [ngClass]="{'fa-bug': item.type=='Bug'}"></i>
-                {{item.type}}
-              </td>
-              <td>
-                <i *ngIf="item.apiCompleted" class="fas fa-check "></i>
-              </td>
-              <td>
-                <i *ngIf="item.uiCompleted" class="fas fa-check"></i>
-              </td>
+            <tbody>
+              <tr *ngFor="let item of release.releaseItems">
+                <td>
+                  {{item.title}} </td>
+                <td [ngClass]="{'text-danger': item.type=='bug'}">
+                  <i class="fas " [ngClass]="{'fa-bug': item.type=='bug'}"></i>
+                  {{item.type}}
+                </td>
+                <td>
+                  <i *ngIf="item.apiCompleted" class="fas fa-check "></i>
+                </td>
+                <td>
+                  <i *ngIf="item.uiCompleted" class="fas fa-check"></i>
+                </td>
 
-              <!-- <td class="item-status">
-                                <span [innerHTML]="item.status|workItemStatus"></span>
-                            </td> -->
-            </tr>
+                <td class="item-status">
+                  <span [innerHTML]="item.status|workItemStatus"></span>
+                </td>
+              </tr>
+            </tbody>
+
 
           </table>
         </section>

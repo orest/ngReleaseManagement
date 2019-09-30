@@ -21,6 +21,12 @@ export class ReleaseService {
     );
   }
 
+  getUpcomingReleases(): Observable<Release[]> {
+    return this.http.get<Release[]>(`${this.baseUrl}Dashboard`).pipe(
+      tap(data => console.log(data))
+
+    );
+  }
   getRelease(id): Observable<Release> {
     return this.http.get<Release>(`${this.baseUrl}Releases/${id}`).pipe(
       map(data => {
