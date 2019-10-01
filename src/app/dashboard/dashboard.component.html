@@ -5,7 +5,18 @@
 
       <div>
         <section>
-          <table class="table  table-bordered table-success">
+          <ul class="list-unstyled timeline">
+            <li *ngFor="let item of releaseTimeline" [class]="item.cssClass">
+              <div class="timestamp">
+                <span class="date">{{item.dateLabel}}</span>
+              </div>
+              <div class="status">
+                <h5 class="h6" >{{item.title}} </h5>
+              </div>
+            </li>
+          </ul>
+          <hr class="border-bottom border-primary">
+          <!-- <table class="table  table-bordered ">
             <thead>
               <tr>
                 <th>QA Starts</th>
@@ -14,7 +25,7 @@
                 <th>UAT Ends</th>
                 <th>Release </th>
               </tr>
-              <tr >
+              <tr>
                 <td>{{release.daysUntilText2}} </td>
                 <td>{{release.qaEndDateText}} </td>
                 <td>{{release.uatStartDateText}} </td>
@@ -22,7 +33,7 @@
                 <td>{{release.releaseDateText}} </td>
               </tr>
             </thead>
-          </table>
+          </table> -->
         </section>
         <section class="mb-4">
           <table class="table table-striped">

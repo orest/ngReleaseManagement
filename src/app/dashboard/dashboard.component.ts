@@ -18,22 +18,16 @@ export class DashboardComponent implements OnInit {
   releases: Release[] = [];
   upcomingReleases: any[] = [];
   clients: any[] = [];
+  releaseTimeline: any = [
+    { dateLabel: 'January 2017', cssClass: "today", title: 'Today' },
+    { dateLabel: 'January 2017', cssClass: "completed", title: 'Qa start' },
+    { dateLabel: 'March 2017', title: 'UAT start ' },
+    { dateLabel: 'April 2017', title: 'UAT end' },
+    { dateLabel: 'May 2017', title: 'Release' }
+  ];
   constructor(private dataService: DataStoreService, private releaseService: ReleaseService) { }
 
   ngOnInit() {
-    // this.dataService.getReleases().subscribe(data => {
-    //   this.loading = false;
-    //   this.upcomingReleases = data;
-    // });
-
-    // this.dataService.getClients().subscribe(data => {
-    //   this.clients = data;
-    // });
-
-
-    // setTimeout(function () {
-    //   this.loading = false;
-    // }.bind(this), 2000);
 
     forkJoin([this.releaseService.getUpcomingReleases(), this.dataService.getClients()]).subscribe(results => {
       this.loading = false;
@@ -55,6 +49,15 @@ export class DashboardComponent implements OnInit {
           releaseDateText: p.releaseDate ? moment(p.releaseDate).fromNow() : "",
           releaseItems: []
         };
+
+        this.releaseTimeline = [];
+
+        this.releaseTimeline.push({ dateLabel: today.format("MMM, D"), cssClass: "today", title: 'Today' })
+        this.addDateToTimeline(p.qaStartDate, 'Qa start');
+        this.addDateToTimeline(p.uatStartDate, 'UAT start');
+        this.addDateToTimeline(p.uatEndDate, 'UAT End');
+        this.addDateToTimeline(p.releaseDate, 'Release');
+
         p.features.forEach(f => {
           rls.releaseItems.push({
             title: f.displayName,
@@ -136,4 +139,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  addDateToTimeline(date, title) {
+    if (date) {
+      const m = moment(date)
+      this.releaseTimeline.push({ dateLabel: m.format("MM/D") + " (" + m.fromNow() + ")", cssClass: "", title: 'Qa starts' })
+    }
+  }
 }
