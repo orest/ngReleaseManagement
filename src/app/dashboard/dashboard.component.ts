@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
 
         this.releaseTimeline = [];
 
-        this.releaseTimeline.push({ dateLabel: today.format("MMM, D"), cssClass: "today", title: 'Today' })
+        this.releaseTimeline.push({ subtitle: today.format("MMM, D"), cssClass: "today", title: 'Today', step: 0 });
         this.addDateToTimeline(p.qaStartDate, 'Qa start');
         this.addDateToTimeline(p.uatStartDate, 'UAT start');
         this.addDateToTimeline(p.uatEndDate, 'UAT End');
@@ -142,7 +142,12 @@ export class DashboardComponent implements OnInit {
   addDateToTimeline(date, title) {
     if (date) {
       const m = moment(date)
-      this.releaseTimeline.push({ dateLabel: m.format("MM/D") + " (" + m.fromNow() + ")", cssClass: "", title: 'Qa starts' })
+      this.releaseTimeline.push({
+        title: title,
+        subtitle: m.format("MM/D"), cssClass: "",
+        text: m.fromNow(),
+        step: this.releaseTimeline.length
+      })
     }
   }
 }

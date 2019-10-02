@@ -5,14 +5,15 @@
   color: #fff;
 }
 .input-group-append i, .card-header{
-  color: #FF9800
+   //color: #9954BB
 }
 
 $timeline-border-width: 2px;
-//$timeline-border-color: #3e70ff;
 $timeline-border-color: #2196F3;
 $timeline-border-color-completed: #BBDEFB;
-$timeline-border-color-today: #FF9800;
+//$timeline-border-color-today: #FF9800;
+$timeline-border-color-today: #9954BB;
+
 .timeline {
   list-style-type: none;
   display: flex;
@@ -26,7 +27,7 @@ $timeline-border-color-today: #FF9800;
 }
 
 .timestamp {
-  color: #BBDEFB;
+  color: #6610f2;
   margin-bottom: 20px;
   padding: 0px 50px;
   display: flex;
@@ -45,8 +46,8 @@ $timeline-border-color-today: #FF9800;
 }
 .status h5 {
   padding-top: 20px;
-  //font-weight: 600;
-  color: #BDBDBD
+  font-weight: 600;
+  color: #613d7c
 }
 .status:before {
   content: "";

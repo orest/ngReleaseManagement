@@ -26,6 +26,7 @@ import { FeatureDetailsComponent } from './feature/feature-details/feature-detai
 import { WorkItemStatusPipe } from './core/pipes/work-item-status.pipe';
 
 import { DateInputGroupComponent } from './core/components/date-input-group/date-input-group.component';
+import { ProgressIndicatorComponent } from './core/components/progress-indicator/progress-indicator.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { DateInputGroupComponent } from './core/components/date-input-group/date
     FeatureDetailsComponent,
     WorkItemStatusPipe,
     
-    DateInputGroupComponent
+    DateInputGroupComponent,
+    
+    ProgressIndicatorComponent
   ],
   imports: [
     BrowserModule,

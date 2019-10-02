@@ -5,17 +5,21 @@
 
       <div>
         <section>
-          <ul class="list-unstyled timeline">
+          <!-- <ul class="list-unstyled timeline">
             <li *ngFor="let item of releaseTimeline" [class]="item.cssClass">
-              <div class="timestamp">
-                <span class="date">{{item.dateLabel}}</span>
+              <div class="timestamp text-center">
+                <span class="date">{{item.subtitle}}<br> {{item.text}} &nbsp;</span>
               </div>
               <div class="status">
                 <h5 class="h6" >{{item.title}} </h5>
               </div>
             </li>
-          </ul>
-          <hr class="border-bottom border-primary">
+          </ul> -->
+
+          <app-progress-indicator heading="timeline " currentStep="1" [steps]="releaseTimeline" >
+
+          </app-progress-indicator>
+          <hr class="border-bottom ">
           <!-- <table class="table  table-bordered ">
             <thead>
               <tr>
@@ -43,7 +47,7 @@
                 <th class="border-top-0">Type</th>
                 <th class="border-top-0">API</th>
                 <th class="border-top-0">UI</th>
-                <!-- <th class="border-top-0 ">Status </th> -->
+                <th class="border-top-0 ">Status </th>
               </tr>
             </thead>
             <tbody>
