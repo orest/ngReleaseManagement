@@ -9,11 +9,11 @@ $timeline-border-color-today: #9954BB;
 .progress-container{margin-bottom: 30px; margin-left: 20px}
 .progress-container:after { clear: both; display: table; content: " "; }
 .circle-link { display: block; float: left; width: 16%; margin-top: 30px; text-align: right; position: relative;font-family: "Helvetica";
-  .timestamp{color: blue;margin-bottom: 16px; padding: 0  }
+  .timestamp{color: #fff;margin-bottom: 16px; padding: 0  }
 
 }
 .line { height: 4px; background-color: $border-light; display: block; position: relative; top: 4px; }
-.circle-link-text, .circle-link-text-top { padding-top: 15px; display: inline-block; color: $color-gray-dark; text-align: center; width: 100%; margin: 0 auto; margin-left: 44%; }
+.circle-link-text, .circle-link-text-top { padding-top: 15px; display: inline-block; color: $border-light; text-align: center; width: 100%; margin: 0 auto; margin-left: 44%; }
 .progress-container > .circle-link:first-child { width: 0px; margin-left: -20px}
 .progress-container > .circle-link:first-child .circle-link-text { margin: 0; }
 .circle-btn { height: 25px; width: 25px; display: block; border-radius: 50%; margin-top: -10px; margin-left: auto; position: relative; z-index: 99; background-color: $border-light }
