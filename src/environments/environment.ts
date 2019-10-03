@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //baseUrl: 'http://localhost/ra/api/api/'
-  baseUrl: 'api/'
+  baseUrl: 'http://localhost/ra/api/api/'
+  //baseUrl: 'api/'
 };
 
 //local test: api/

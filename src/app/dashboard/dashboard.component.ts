@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   releases: Release[] = [];
   upcomingReleases: any[] = [];
   clients: any[] = [];
+  currentStep = 1;
   releaseTimeline: any = [
     { dateLabel: 'January 2017', cssClass: "today", title: 'Today' },
     { dateLabel: 'January 2017', cssClass: "completed", title: 'Qa start' },
@@ -52,11 +53,23 @@ export class DashboardComponent implements OnInit {
 
         this.releaseTimeline = [];
 
-        this.releaseTimeline.push({ subtitle: today.format("MMM, D"), cssClass: "today", title: 'Today', step: 0 });
+        this.releaseTimeline.push({ subtitle: today.format("MMM, D"), cssClass: "today", title: 'Today', text:"now", step: 0, date: today });
         this.addDateToTimeline(p.qaStartDate, 'Qa start');
         this.addDateToTimeline(p.uatStartDate, 'UAT start');
         this.addDateToTimeline(p.uatEndDate, 'UAT End');
         this.addDateToTimeline(p.releaseDate, 'Release');
+
+
+        this.releaseTimeline.sort((a, b) => {
+          return +new Date(a.date) - +new Date(b.date);
+        });
+
+        for (let i = 0; i < this.releaseTimeline.length; i++) {
+          this.releaseTimeline[i].step = i + 1;
+          if (this.releaseTimeline[i].cssClass === "today") {
+            this.currentStep = this.releaseTimeline[i].step;
+          }
+        }
 
         p.features.forEach(f => {
           rls.releaseItems.push({
@@ -146,7 +159,8 @@ export class DashboardComponent implements OnInit {
         title: title,
         subtitle: m.format("MM/D"), cssClass: "",
         text: m.fromNow(),
-        step: this.releaseTimeline.length
+        step: this.releaseTimeline.length,
+        date: m
       })
     }
   }

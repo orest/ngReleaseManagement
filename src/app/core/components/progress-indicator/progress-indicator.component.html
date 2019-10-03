@@ -2,7 +2,7 @@
   <h1 [hidden]="!heading"> {{heading}}</h1>
   <div class="progress-container">
 
-    <div class='circle-link' [style.width]="index == 0 ? '0px' : itemWidth" *ngFor="let step of steps; let index=index" [ngClass]='{completed:currentStep>=step.step,active: currentStep ==step.step}'>
+    <div class='circle-link {{step.cssClass}}' [style.width]="index == 0 ? '0px' : itemWidth" *ngFor="let step of steps; let index=index" [ngClass]='{completed:currentStep>=step.step,active: currentStep ==step.step}' >
       <div class="circle-link-text-top timestamp  d-none d-sm-inline-block text-nowrap">
         <span class="date"><strong>{{step.subtitle}}</strong> <br> {{step.text}} &nbsp;</span>
       </div>
