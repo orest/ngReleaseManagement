@@ -48,26 +48,27 @@ export class DashboardComponent implements OnInit {
           uatStartDateText: p.uatStartDate ? moment(p.uatStartDate).fromNow() : "",
           uatEndDateText: p.uatEndDate ? moment(p.uatEndDate).fromNow() : "",
           releaseDateText: p.releaseDate ? moment(p.releaseDate).fromNow() : "",
-          releaseItems: []
+          releaseItems: [],
+          releaseTimeline:[]
         };
 
-        this.releaseTimeline = [];
+        //this.releaseTimeline = [];
 
-        this.releaseTimeline.push({ subtitle: today.format("MMM, D"), cssClass: "today", title: 'Today', text:"now", step: 0, date: today });
-        this.addDateToTimeline(p.qaStartDate, 'Qa start');
-        this.addDateToTimeline(p.uatStartDate, 'UAT start');
-        this.addDateToTimeline(p.uatEndDate, 'UAT End');
-        this.addDateToTimeline(p.releaseDate, 'Release');
+        rls.releaseTimeline.push({ subtitle: today.format("MMM, D"), cssClass: "today", title: 'Today', text:"now", step: 0, date: today });
+        this.addDateToTimeline(rls, p.qaStartDate, 'Qa start');
+        this.addDateToTimeline(rls,p.uatStartDate, 'UAT start');
+        this.addDateToTimeline(rls,p.uatEndDate, 'UAT End');
+        this.addDateToTimeline(rls,p.releaseDate, 'Release');
 
 
-        this.releaseTimeline.sort((a, b) => {
+        rls.releaseTimeline.sort((a, b) => {
           return +new Date(a.date) - +new Date(b.date);
         });
 
-        for (let i = 0; i < this.releaseTimeline.length; i++) {
-          this.releaseTimeline[i].step = i + 1;
-          if (this.releaseTimeline[i].cssClass === "today") {
-            this.currentStep = this.releaseTimeline[i].step;
+        for (let i = 0; i < rls.releaseTimeline.length; i++) {
+          rls.releaseTimeline[i].step = i + 1;
+          if (rls.releaseTimeline[i].cssClass === "today") {
+            this.currentStep = rls.releaseTimeline[i].step;
           }
         }
 
@@ -152,10 +153,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  addDateToTimeline(date, title) {
+  addDateToTimeline(release, date, title) {
     if (date) {
       const m = moment(date)
-      this.releaseTimeline.push({
+      release.releaseTimeline.push({
         title: title,
         subtitle: m.format("MM/D"), cssClass: "",
         text: m.fromNow(),

@@ -9,7 +9,7 @@ $timeline-border-color-today: #9954BB;
 .progress-container{margin-bottom: 30px; margin-left: 20px}
 .progress-container:after { clear: both; display: table; content: " "; }
 .circle-link { display: block; float: left; width: 16%; margin-top: 30px; text-align: right; position: relative;font-family: "Helvetica";
-  .timestamp{color: #fff;margin-bottom: 16px; padding: 0  }
+  .timestamp{color: var(--primary);margin-bottom: 16px; padding: 0  }
 
 }
 .line { height: 4px; background-color: $border-light; display: block; position: relative; top: 4px; }
