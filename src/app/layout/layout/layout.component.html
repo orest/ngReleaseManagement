@@ -1,9 +1,25 @@
+<!-- <div>
 
-<div > 
-	<app-header></app-header>
-	<div class="container">
-		<router-outlet>
+  <div class="container">
+    <router-outlet>
 
-		</router-outlet>
-	</div>
+    </router-outlet>
+  </div>
+</div> -->
+
+
+
+<div class="container-fluid">
+  <app-sidebar></app-sidebar>
+
+  <div class="row">
+    <main class="col-md-10 offset-md-2 p-0">
+      <app-header></app-header>
+      <div class="main bg-secondary font-13 p-4">
+        <router-outlet>
+
+        </router-outlet>
+      </div>
+    </main>
+  </div>
 </div>

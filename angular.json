@@ -32,8 +32,9 @@
 							 "node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css",
 							 "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
 							 "node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-brands.css",
-              "src/assets/css/slate-bootstrap.min.css",
-							"src/styles.scss"
+							 "node_modules/bootstrap/dist/css/bootstrap.css",
+
+							"src/assets/css/styles.scss"
 						],
 						"scripts": []
 					},
