@@ -40,10 +40,11 @@ export class DashboardComponent implements OnInit {
         let rls = {
           releaseId: p.releaseId,
           applicationVersion: p.applicationVersion,
+          releaseDate: moment(p.releaseDate).format("MM/DD/YYYY"),
           client: p.client,
           daysUntilQa: p.qaStartDate ? moment(p.qaStartDate).diff(today, 'days') : "",
-          daysUntilText: p.qaStartDate ? moment(p.qaStartDate).fromNow() : "",
-          daysUntilText2: p.qaStartDate ? moment(p.qaStartDate).fromNow() : "",
+          daysUntilText: p.releaseDate ? moment(p.releaseDate).fromNow() : "",
+          daysUntilText2: p.releaseDate ? moment(p.releaseDate).fromNow() : "",
           qaEndDateText: p.qaEndDate ? moment(p.qaEndDate).fromNow() : "",
           uatStartDateText: p.uatStartDate ? moment(p.uatStartDate).fromNow() : "",
           uatEndDateText: p.uatEndDate ? moment(p.uatEndDate).fromNow() : "",

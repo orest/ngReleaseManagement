@@ -1,5 +1,5 @@
 $primary: #1D417A;
-$color-highlight: #23A0DA;
+$color-highlight: #FE7016;
 $border-light: #EDEDED;
 $color-gray-dark: #4c4e4b;
 $theme-colors: (  "primary": $primary);
@@ -13,7 +13,7 @@ $timeline-border-color-today: #9954BB;
 
 }
 .line { height: 4px; background-color: $border-light; display: block; position: relative; top: 4px; }
-.circle-link-text, .circle-link-text-top { padding-top: 15px; display: inline-block; color: $border-light; text-align: center; width: 100%; margin: 0 auto; margin-left: 44%; }
+.circle-link-text, .circle-link-text-top { padding-top: 15px; display: inline-block; color: #848893; text-align: center; width: 100%; margin: 0 auto; margin-left: 44%; }
 .progress-container > .circle-link:first-child { width: 0px; margin-left: -20px}
 .progress-container > .circle-link:first-child .circle-link-text { margin: 0; }
 .circle-btn { height: 25px; width: 25px; display: block; border-radius: 50%; margin-top: -10px; margin-left: auto; position: relative; z-index: 99; background-color: $border-light }
