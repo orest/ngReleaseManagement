@@ -50,16 +50,13 @@ export class DashboardComponent implements OnInit {
           uatEndDateText: p.uatEndDate ? moment(p.uatEndDate).fromNow() : "",
           releaseDateText: p.releaseDate ? moment(p.releaseDate).fromNow() : "",
           releaseItems: [],
-          releaseTimeline:[]
+          releaseTimeline: []
         };
 
-        //this.releaseTimeline = [];
-
-        rls.releaseTimeline.push({ subtitle: today.format("MMM, D"), cssClass: "today", title: 'Today', text:"now", step: 0, date: today });
         this.addDateToTimeline(rls, p.qaStartDate, 'Qa start');
-        this.addDateToTimeline(rls,p.uatStartDate, 'UAT start');
-        this.addDateToTimeline(rls,p.uatEndDate, 'UAT End');
-        this.addDateToTimeline(rls,p.releaseDate, 'Release');
+        this.addDateToTimeline(rls, p.uatStartDate, 'UAT start');
+        this.addDateToTimeline(rls, p.uatEndDate, 'UAT End');
+        this.addDateToTimeline(rls, p.releaseDate, 'Release');
 
 
         rls.releaseTimeline.sort((a, b) => {
@@ -68,8 +65,9 @@ export class DashboardComponent implements OnInit {
 
         for (let i = 0; i < rls.releaseTimeline.length; i++) {
           rls.releaseTimeline[i].step = i + 1;
-          if (rls.releaseTimeline[i].cssClass === "today") {
-            this.currentStep = rls.releaseTimeline[i].step;
+
+          if (moment( rls.releaseTimeline[i].date) < today) {
+            rls.releaseTimeline[i].cssClass = "completed";
           }
         }
 

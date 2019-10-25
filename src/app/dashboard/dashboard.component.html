@@ -8,9 +8,10 @@
             {{release.client.clientName }} {{release.applicationVersion}}
             <small class="text-muted" > {{release.releaseDate}}  ({{release.daysUntilText}})</small>
         </h5>
-
       </div>
       <div card-body>
+
+
         <section>
           <app-progress-indicator  [currentStep]="currentStep" [steps]="release.releaseTimeline" >
 
