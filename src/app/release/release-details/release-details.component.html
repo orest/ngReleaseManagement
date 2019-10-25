@@ -5,30 +5,32 @@
     <div class="row">
       <div class="col-md-12 ">
         <div class="card card hero-card text-center mb-4">
-            <form name="frmRelease" #frmRelease="ngForm" (ngSubmit)="submitForm(frmRelease)">
-          <div class="card-header hero-card-header d-flex flex-row align-items-center">
-            <div class="mr-auto font-16"  *ngIf="release" >Manage Release: {{release.applicationVersion}}</div>
-            <ul class="nav nav-pills card-header-pills">
-              <li class="nav-item pr-2">
-                <a class="btn btn-outline-secondary" href="#" [routerLink]="['/']">cancel</a>
-              </li>
-              <li class="nav-item">
-
-                <span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
+          <form name="frmRelease" #frmRelease="ngForm" (ngSubmit)="submitForm(frmRelease)">
+            <div class="card-header hero-card-header d-flex flex-row align-items-center">
+              <div class="mr-auto font-16" *ngIf="release">Manage Release: {{release.applicationVersion}}</div>
+              <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item pr-2">
+                  <a class="btn btn-outline-secondary" href="#" [routerLink]="['/']">cancel</a>
+                </li>
+                <li class="nav-item">
+                  <span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
                     <button class="btn btn-primary" type="submit">save release </button>
                   </span>
-
-              </li>
-            </ul>
-          </div>
-
-
+                </li>
+              </ul>
+            </div>
             <div class="card-body">
               <!-- Version -->
-              <div class="form-group row">
-                <label class="col-md-2 col-form-label text-right">Version </label>
-                <div class="col-md-2">
-                  <input type="text" class="form-control" name="applicationVersion" [(ngModel)]="release.applicationVersion" placeholder="x.x.xx">
+              <div class="form-group form-row">
+                <label for="" class="col-md-2 col-form-label text-right">Version</label>
+                <div class="col-md-4">
+                  <input type="text" name="applicationVersion" class="form-control" required pattern="^\d{1,2}\.\d{1,2}\.([0-9]|[x]|[X]){1,2}\+{0,1}$" [(ngModel)]="release.applicationVersion" [ngModelOptions]="{updateOn: 'blur'}">
+                  <em *ngIf="!!frmRelease.controls.applicationVersion?.errors?.pattern">
+                    Invalid Version Number
+                  </em>
+                  <em *ngIf="!!frmRelease.controls.applicationVersion?.errors?.required && !!frmRelease.controls.applicationVersion?.touched">
+                    Required
+                  </em>
                 </div>
               </div>
 
@@ -90,7 +92,7 @@
               <!-- Status -->
               <div class="form-group row">
                 <label for="" class="col-md-2 col-form-label text-right">Status</label>
-                <div class="col-md-9 pt-2">
+                <div class="col-md-9 pt-2 text-left">
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input" id="statusNew" name="statusCode" value="new" [(ngModel)]="release.statusCode">
                     <label class="custom-control-label" for="statusNew">New</label>
@@ -199,7 +201,7 @@
                   <textarea class="form-control" name="notes" [(ngModel)]="release.notes"></textarea>
                 </div>
               </div>
-<!--
+              <!--
               <div class="text-right mt-4">
                 <button type="button" class="mx-2 btn btn-secondary" [routerLink]="['/release']">Cancel</button>
 
@@ -231,7 +233,7 @@
           <ul class="list-group ">
             <li class="list-group-item" *ngFor="let feature of release.features">
               <div class="d-flex justify-content-between">
-                <span>{{feature.displayName}}</span>
+                <span>{{feature.feature.displayName}}</span>
                 <div>
                   <button type="button" class="btn btn-danger btn-sm" (click)="removeFeature(feature)">
                     <i class="fas fa-times"></i>
