@@ -23,7 +23,7 @@ export class ProgressIndicatorComponent implements OnInit {
       const daysBetween = this.steps[this.steps.length - 1].date.diff(this.steps[0].date, 'days');
       const fromStartTillToday = today.diff(this.steps[0].date, 'days');
       this.todayOffset = daysBetween * fromStartTillToday + 3;
-console.log(this.todayOffset)
+      this.todayOffset = Math.max(0, this.todayOffset);
     }
   }
 
