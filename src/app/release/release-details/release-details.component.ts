@@ -76,8 +76,6 @@ export class ReleaseDetailsComponent implements OnInit {
 
   submitForm(form) {
     if (form.valid) {
-      debugger
-
       if (this.id == 0) {
         this.releaseService.createRelease(this.release).subscribe(p => {
           this.router.navigate(["release"]);
@@ -94,7 +92,7 @@ export class ReleaseDetailsComponent implements OnInit {
     if (this.newFeatureId) {
       const feature = this.features.find(p => p.featureId == this.newFeatureId);
       if (feature) {
-        this.releaseService.assingFeatureToRelease(this.id, feature).subscribe(p => {
+        this.releaseService.assignFeatureToRelease(this.id, feature).subscribe(p => {
           this.getReleaseInfo();
         })
       }

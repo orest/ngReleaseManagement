@@ -19,11 +19,14 @@ export class ProgressIndicatorComponent implements OnInit {
     if (this.steps) {
       this.itemWidth = (100 / (this.steps.length - 1)) + '%';
       this.currentStep = Number(this.currentStep);
-      let today = moment();
+      const  today = moment();
       const daysBetween = this.steps[this.steps.length - 1].date.diff(this.steps[0].date, 'days');
       const fromStartTillToday = today.diff(this.steps[0].date, 'days');
-      this.todayOffset = daysBetween * fromStartTillToday + 3;
-      this.todayOffset = Math.max(0, this.todayOffset);
+      this.todayOffset = (fromStartTillToday *100)/daysBetween;
+
+      this.todayOffset = Math.max(2, this.todayOffset);
+      this.todayOffset = Math.min(98, this.todayOffset);
+
     }
   }
 
