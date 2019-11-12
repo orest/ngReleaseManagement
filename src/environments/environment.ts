@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost/ra/api/api/'
+  baseUrl: 'https://ok-aait-api.azurewebsites.net/api/'
   //baseUrl: 'api/'
 };
 
