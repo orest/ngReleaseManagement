@@ -73,7 +73,7 @@ export class DashboardComponent implements OnInit {
 
         p.features.forEach(f => {
           rls.releaseItems.push({
-            title: f.displayName,
+            title: f.feature.displayName,
             type: "Feature",
             apiCompleted: f.isApiCompleted,
             uiCompleted: f.isUiCompleted,
