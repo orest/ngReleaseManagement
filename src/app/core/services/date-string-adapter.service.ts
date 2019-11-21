@@ -13,7 +13,7 @@ export class DateStringAdapterService implements NgbDateAdapter<Date> {
       return;
     }
     // var mom = this.moment(value);
-    console.log("from:" + value)
+    //console.log("from:" + value)
     const date = new Date(value);
     return {
       year: Number(date.getFullYear()),

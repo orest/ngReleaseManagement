@@ -100,7 +100,12 @@ export class ReleaseDetailsComponent implements OnInit {
   }
 
   removeFeature(f) {
-    console.log(f)
+if(f && f.releaseFeatureId){
+  this.releaseService.removeFeatureFromRelease(f.releaseFeatureId).subscribe(p => {
+    this.getReleaseInfo();
+  })
+}
+
   }
 
   addWrokItem() {

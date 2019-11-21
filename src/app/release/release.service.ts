@@ -92,7 +92,11 @@ export class ReleaseService {
   }
 
   removeFeatureFromRelease(featureId) {
-
+    const url = `${this.baseUrl}ReleaseFeatures/${featureId}` ;
+    return this.http.delete(url).pipe(
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+    );
   }
 
   addWrokItemToRelease(workItem) {

@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs';
 import { ReleaseService } from '../release/release.service';
 import * as moment from 'moment';
+import { sortBy } from 'lodash';
+//import _ from 'lodash';
 
 @Component({
   selector: "app-dashboard",
@@ -66,7 +68,7 @@ export class DashboardComponent implements OnInit {
         for (let i = 0; i < rls.releaseTimeline.length; i++) {
           rls.releaseTimeline[i].step = i + 1;
 
-          if (moment( rls.releaseTimeline[i].date) < today) {
+          if (moment(rls.releaseTimeline[i].date) < today) {
             rls.releaseTimeline[i].cssClass = "completed";
           }
         }
@@ -91,7 +93,7 @@ export class DashboardComponent implements OnInit {
           });
         });
 
-
+        rls.releaseItems = sortBy(rls.releaseItems, "title");
         return rls;
         //const client = this.clients.find(c => c.clientId === p.clientId);
         // let data = {
