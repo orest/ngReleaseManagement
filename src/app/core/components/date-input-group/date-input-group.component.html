@@ -1,8 +1,21 @@
-<div class="input-group {{sizeCssClass}}">
+<!-- <div class="input-group {{sizeCssClass}}">
 	<input class="form-control " type="text" ngbDatepicker #dp1="ngbDatepicker" [(ngModel)]="value" />
 	<div class="input-group-append">
 		<button type="button" class="btn btn-outline-primary" (click)="dp1.toggle()">
 			<i class="fas fa-calendar-alt"></i>
+		</button>
+	</div>
+</div> -->
+
+
+<div class="input-group {{sizeCssClass}}">
+	<div *ngIf="prepend" class="input-group-prepend">
+		<span class="input-group-text font-13">{{prependValue}}</span>
+	</div>
+	<input type="text" ngbDatepicker #dp1="ngbDatepicker" [(ngModel)]="value" class="form-control font-13 border-right-0">
+	<div class="input-group-append">
+		<button class="input-group-text bg-white" type="button" (click)="dp1.toggle()">
+			<i class="material-icons md-18 align-middle">event</i>
 		</button>
 	</div>
 </div>

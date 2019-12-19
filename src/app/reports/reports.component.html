@@ -1,1 +1,37 @@
-<p>reports works!</p>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+<div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="my-3 ">Reports
+			</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<table class="table table-striped table-bordered">
+						<thead class="thead-dark">
+							<tr>
+								<th>Version</th>
+								<th>Client</th>
+								<th>Status</th>
+								<th>Release Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let release of releases">
+								<td> {{release.release.applicationVersion}}</td>
+								<td> {{release.release.clientName}}</td>
+								<td> {{release.release.statusCode}}</td>
+								<td>{{release.release.releaseDate|date}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

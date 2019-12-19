@@ -11,7 +11,10 @@ import { noop } from 'rxjs';
 })
 export class DateInputGroupComponent implements ControlValueAccessor {
   @Input() size: string;
-  sizeCssClass: string = ""
+  @Input() prepend: string;
+  sizeCssClass: string = "";
+  prependValue = "";
+
 
   private innerValue: any = '';
 
@@ -60,6 +63,9 @@ export class DateInputGroupComponent implements ControlValueAccessor {
   ngOnInit() {
     if (this.size) {
       this.sizeCssClass = `input-group-${this.size}`;
+    }
+    if(this.prepend){
+      this.prependValue = this.prepend;
     }
   }
 
