@@ -14,7 +14,7 @@ import { Feature } from 'src/app/core/modules/Feature';
     styles: [
         ".btn-light.active {color:#fff !important; background-color: #fe7016!important; }",
         ".btn-light {border:1px solid #2780E3 !important;width:45%; disply:block; margin:0 4px; border-radius:20px }",
-        ".btn-group-toggle {width:100%; }",
+    ".btn-group-toggle {width:100%; }"
     ]
 })
 export class ReleaseDetailsComponent implements OnInit {
