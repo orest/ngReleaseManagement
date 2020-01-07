@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs';
 import { ReleaseService } from '../release/release.service';
 import * as moment from 'moment';
+import { sortBy } from 'lodash';
+//import _ from 'lodash';
 
 @Component({
   selector: "app-dashboard",
@@ -40,25 +42,23 @@ export class DashboardComponent implements OnInit {
         let rls = {
           releaseId: p.releaseId,
           applicationVersion: p.applicationVersion,
+          releaseDate: moment(p.releaseDate).format("MM/DD/YYYY"),
           client: p.client,
           daysUntilQa: p.qaStartDate ? moment(p.qaStartDate).diff(today, 'days') : "",
-          daysUntilText: p.qaStartDate ? moment(p.qaStartDate).fromNow() : "",
-          daysUntilText2: p.qaStartDate ? moment(p.qaStartDate).fromNow() : "",
+          daysUntilText: p.releaseDate ? moment(p.releaseDate).fromNow() : "",
+          daysUntilText2: p.releaseDate ? moment(p.releaseDate).fromNow() : "",
           qaEndDateText: p.qaEndDate ? moment(p.qaEndDate).fromNow() : "",
           uatStartDateText: p.uatStartDate ? moment(p.uatStartDate).fromNow() : "",
           uatEndDateText: p.uatEndDate ? moment(p.uatEndDate).fromNow() : "",
           releaseDateText: p.releaseDate ? moment(p.releaseDate).fromNow() : "",
           releaseItems: [],
-          releaseTimeline:[]
+          releaseTimeline: []
         };
 
-        //this.releaseTimeline = [];
-
-        rls.releaseTimeline.push({ subtitle: today.format("MMM, D"), cssClass: "today", title: 'Today', text:"now", step: 0, date: today });
         this.addDateToTimeline(rls, p.qaStartDate, 'Qa start');
-        this.addDateToTimeline(rls,p.uatStartDate, 'UAT start');
-        this.addDateToTimeline(rls,p.uatEndDate, 'UAT End');
-        this.addDateToTimeline(rls,p.releaseDate, 'Release');
+        this.addDateToTimeline(rls, p.uatStartDate, 'UAT start');
+        this.addDateToTimeline(rls, p.uatEndDate, 'UAT End');
+        this.addDateToTimeline(rls, p.releaseDate, 'Release');
 
 
         rls.releaseTimeline.sort((a, b) => {
@@ -67,14 +67,15 @@ export class DashboardComponent implements OnInit {
 
         for (let i = 0; i < rls.releaseTimeline.length; i++) {
           rls.releaseTimeline[i].step = i + 1;
-          if (rls.releaseTimeline[i].cssClass === "today") {
-            this.currentStep = rls.releaseTimeline[i].step;
+
+          if (moment(rls.releaseTimeline[i].date) < today) {
+            rls.releaseTimeline[i].cssClass = "completed";
           }
         }
 
         p.features.forEach(f => {
           rls.releaseItems.push({
-            title: f.displayName,
+            title: f.feature.displayName,
             type: "Feature",
             apiCompleted: f.isApiCompleted,
             uiCompleted: f.isUiCompleted,
@@ -92,7 +93,7 @@ export class DashboardComponent implements OnInit {
           });
         });
 
-
+        rls.releaseItems = sortBy(rls.releaseItems, "title");
         return rls;
         //const client = this.clients.find(c => c.clientId === p.clientId);
         // let data = {

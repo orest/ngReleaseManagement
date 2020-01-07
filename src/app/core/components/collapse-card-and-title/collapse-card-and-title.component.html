@@ -1,0 +1,18 @@
+<div class="card hero-card">
+  <div class="card-header hero-card-header" (click)="toggle()">
+    <div class="d-flex justify-content-between">
+      <ng-content select="[card-title]" >
+
+      </ng-content>
+      <div>
+        <i class="fas fa-chevron-down" [hidden]="isVisible"></i>
+        <i class="fas fa-chevron-up" [hidden]="!isVisible"></i>
+      </div>
+    </div>
+  </div>
+  <div class="card-body" *ngIf="isVisible">
+    <ng-content select="[card-body]">
+
+    </ng-content>
+  </div>
+</div>

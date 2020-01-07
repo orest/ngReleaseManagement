@@ -38,7 +38,7 @@ export class DataStoreService {
 
   getClients(): Observable<Client[]> {
     return this.http.get<Client[]>(this.baseUrl + "Clients").pipe(
-      tap(data => console.log(data)),
+      //tap(data => console.log(data)),
     );
   }
 

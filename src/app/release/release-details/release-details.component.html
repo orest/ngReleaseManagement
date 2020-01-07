@@ -1,31 +1,42 @@
 <div>
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h3 class=" my-3 ">Manage Release
-        <small *ngIf="release" class="text-muted "> :: {{release.applicationVersion}}</small>
-      </h3>
-    </div>
-  </div>
-
   <div *ngIf="release">
     <div class="row">
       <div class="col-md-12 ">
-        <div class="card">
+        <div class="card card hero-card text-center mb-4">
           <form name="frmRelease" #frmRelease="ngForm" (ngSubmit)="submitForm(frmRelease)">
+            <div class="card-header hero-card-header d-flex flex-row align-items-center">
+              <div class="mr-auto font-16" *ngIf="release">Manage Release: {{release.applicationVersion}}</div>
+              <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item pr-2">
+                  <a class="btn btn-outline-secondary" href="#" [routerLink]="['/']">cancel</a>
+                </li>
+                <li class="nav-item">
+                  <span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
+                    <button class="btn btn-primary" type="submit">save release </button>
+                  </span>
+                </li>
+              </ul>
+            </div>
             <div class="card-body">
               <!-- Version -->
-              <div class="form-group row">
-                <label class="col-md-2 col-form-label">Version </label>
-                <div class="col-md-2">
-                  <input type="text" class="form-control" name="applicationVersion" [(ngModel)]="release.applicationVersion" placeholder="x.x.xx">
+              <div class="form-group form-row">
+                <label for="" class="col-md-2 col-form-label text-right">Version</label>
+                <div class="col-md-4">
+                  <input type="text" name="applicationVersion" class="form-control" required pattern="^\d{1,2}\.\d{1,2}\.([0-9]|[x]|[X]){1,2}\+{0,1}$" [(ngModel)]="release.applicationVersion" [ngModelOptions]="{updateOn: 'blur'}">
+                  <em *ngIf="!!frmRelease.controls.applicationVersion?.errors?.pattern">
+                    Invalid Version Number
+                  </em>
+                  <em *ngIf="!!frmRelease.controls.applicationVersion?.errors?.required && !!frmRelease.controls.applicationVersion?.touched">
+                    Required
+                  </em>
                 </div>
               </div>
 
               <!-- Platform -->
               <div class="form-group row">
-                <label class="col-md-2 col-form-label">Platform</label>
+                <label class="col-md-2 col-form-label text-right">Platform</label>
                 <div class="col-md-5">
                   <div class="">
                     <div class="btn-group btn-group-toggle">
@@ -79,8 +90,8 @@
 
               <!-- Status -->
               <div class="form-group row">
-                <label for="" class="col-md-2 col-form-label">Status</label>
-                <div class="col-md-9 pt-2">
+                <label for="" class="col-md-2 col-form-label text-right">Status</label>
+                <div class="col-md-9 pt-2 text-left">
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" class="custom-control-input" id="statusNew" name="statusCode" value="new" [(ngModel)]="release.statusCode">
                     <label class="custom-control-label" for="statusNew">New</label>
@@ -98,7 +109,7 @@
 
               <!-- release -->
               <div class="form-group row">
-                <label for="" class="col-md-2 col-form-label">Release date</label>
+                <label for="" class="col-md-2 col-form-label text-right">Release date</label>
                 <div class="col-md-4 ">
                   <app-date-input-group [(ngModel)]="release.releaseDate" name="releaseDate"></app-date-input-group>
                 </div>
@@ -106,7 +117,7 @@
 
               <!-- Client -->
               <div class="form-group row">
-                <label class="col-md-2 col-form-label">Client</label>
+                <label class="col-md-2 col-form-label text-right">Client</label>
                 <div class="col-md-4">
                   <select class="form-control" name="clientId" [(ngModel)]="release.clientId">
                     <option value=""></option>
@@ -117,7 +128,7 @@
 
               <!-- qaStartDate -->
               <div class="form-group row">
-                <label class="col-md-2 col-form-label">QA Dates </label>
+                <label class="col-md-2 col-form-label text-right">QA Dates </label>
                 <div class="col-md-4">
                   <label class="text-muted mb-0" for="">from</label>
                   <app-date-input-group [(ngModel)]="release.qaStartDate" name="qaStartDate"></app-date-input-group>
@@ -147,7 +158,7 @@
 
               <!-- uatStartDate -->
               <div class="form-group row">
-                <label class="col-md-2 col-form-label">UAT Dates </label>
+                <label class="col-md-2 col-form-label text-right">UAT Dates </label>
                 <div class="col-md-4">
                   <label class="text-muted mb-0" for="">from</label>
                   <div class="input-group">
@@ -174,7 +185,7 @@
 
               <!-- clientApproverName -->
               <div class="form-group row">
-                <label class="col-md-2 col-form-label">Client Approver </label>
+                <label class="col-md-2 col-form-label text-right">Client Approver </label>
                 <div class="col-md-6">
 
                   <input type="text" class="form-control" name="clientApproverName" [(ngModel)]="release.clientApproverName">
@@ -182,12 +193,12 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-md-2 col-form-label">Notes </label>
+                <label class="col-md-2 col-form-label text-right">Notes </label>
                 <div class="col-md-10">
                   <textarea class="form-control" name="notes" [(ngModel)]="release.notes"></textarea>
                 </div>
               </div>
-
+              <!--
               <div class="text-right mt-4">
                 <button type="button" class="mx-2 btn btn-secondary" [routerLink]="['/release']">Cancel</button>
 
@@ -195,7 +206,7 @@
                   <button class="btn btn-primary" type="submit">Save</button>
                 </span>
 
-              </div>
+              </div> -->
             </div>
           </form>
         </div>
@@ -219,7 +230,7 @@
           <ul class="list-group ">
             <li class="list-group-item" *ngFor="let feature of release.features">
               <div class="d-flex justify-content-between">
-                <span>{{feature.displayName}}</span>
+                <span>{{feature.feature.displayName}}</span>
                 <div>
                   <button type="button" class="btn btn-danger btn-sm" (click)="removeFeature(feature)">
                     <i class="fas fa-times"></i>

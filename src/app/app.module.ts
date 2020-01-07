@@ -28,6 +28,7 @@ import { WorkItemStatusPipe } from './core/pipes/work-item-status.pipe';
 import { DateInputGroupComponent } from './core/components/date-input-group/date-input-group.component';
 import { ProgressIndicatorComponent } from './core/components/progress-indicator/progress-indicator.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { CollapseCardAndTitleComponent } from './core/components/collapse-card-and-title/collapse-card-and-title.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,9 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
     
     ProgressIndicatorComponent,
     
-    SidebarComponent
+    SidebarComponent,
+    
+    CollapseCardAndTitleComponent
   ],
   imports: [
     BrowserModule,

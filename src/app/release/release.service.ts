@@ -5,12 +5,12 @@ import { Observable, throwError } from 'rxjs';
 import { tap, map, catchError } from 'rxjs/operators';
 import { ReleasePlatform } from '../core/modules/ReleasePlatform';
 import { environment } from '../../environments/environment';
+import { ReleaseFeature } from '../core/modules/ReleaseFeature';
 @Injectable({
   providedIn: 'root'
 })
 export class ReleaseService {
 
-  //private baseUrl = "api/";
   private baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
@@ -78,16 +78,25 @@ export class ReleaseService {
     );
   }
 
-  assingFeatureToRelease(releaseId, feature) {
-    var url = `${this.baseUrl}/Releases/${releaseId}/assign`;
-    return this.http.post<Release>(url, feature).pipe(
+  assignFeatureToRelease(releaseId, feature) {
+    const model = new ReleaseFeature();
+    model.featureId = feature.featureId;
+    model.releaseId = releaseId;
+    model.statusCode = "new";
+
+    const url = `${this.baseUrl}ReleaseFeatures/`;
+    return this.http.post<ReleaseFeature>(url, model).pipe(
       tap(data => console.log(data)),
       catchError(this.handleError)
     );
   }
 
   removeFeatureFromRelease(featureId) {
-
+    const url = `${this.baseUrl}ReleaseFeatures/${featureId}` ;
+    return this.http.delete(url).pipe(
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+    );
   }
 
   addWrokItemToRelease(workItem) {

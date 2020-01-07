@@ -10,16 +10,19 @@
 
 
 <div class="container-fluid">
-  <app-sidebar></app-sidebar>
-
   <div class="row">
-    <main class="col-md-10 offset-md-2 p-0">
-      <app-header></app-header>
-      <div class="main bg-secondary font-13 p-4">
-        <router-outlet>
+    <div class="col-md-2">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-10">
+      <main class=" p-0">
+        <app-header></app-header>
+        <div class="main bg-secondary font-13 p-4">
+          <router-outlet>
 
-        </router-outlet>
-      </div>
-    </main>
+          </router-outlet>
+        </div>
+      </main>
+    </div>
   </div>
 </div>
