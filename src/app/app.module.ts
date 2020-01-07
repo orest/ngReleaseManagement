@@ -21,8 +21,14 @@ import { ManageClientComponent } from './client/manage-client/manage-client.comp
 import { CollapsibleCardComponent } from './core/components/collapsible-card/collapsible-card.component';
 import { ReleaseListComponent } from './release/release-list/release-list.component';
 import { ReleaseDetailsComponent } from './release/release-details/release-details.component';
+import { FeatureListComponent } from './feature/feature-list/feature-list.component';
+import { FeatureDetailsComponent } from './feature/feature-details/feature-details.component';
 import { WorkItemStatusPipe } from './core/pipes/work-item-status.pipe';
 
+import { DateInputGroupComponent } from './core/components/date-input-group/date-input-group.component';
+import { ProgressIndicatorComponent } from './core/components/progress-indicator/progress-indicator.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { CollapseCardAndTitleComponent } from './core/components/collapse-card-and-title/collapse-card-and-title.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +43,17 @@ import { WorkItemStatusPipe } from './core/pipes/work-item-status.pipe';
     FeatureComponent,
     ManageClientComponent,
     CollapsibleCardComponent,
+    FeatureListComponent,
+    FeatureDetailsComponent,
     WorkItemStatusPipe,
     
+    DateInputGroupComponent,
+    
+    ProgressIndicatorComponent,
+    
+    SidebarComponent,
+    
+    CollapseCardAndTitleComponent
   ],
   imports: [
     BrowserModule,

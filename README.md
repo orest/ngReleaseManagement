@@ -31,6 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ng g c feature -s  --spec false
 ng g service services/DataStore --spec false --dry-run
 ng g pipe core/pipes/work-item-status --skipTests=true  --dryRun
+ng g c core/components/collapse-card-and-title -s  --spec false
 
 npm install lodash  ngx-loading --save
 
@@ -50,3 +51,5 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 ---
 npm install moment --save
+
+ng build --prod --base-href="/ra/"

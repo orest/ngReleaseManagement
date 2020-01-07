@@ -1,0 +1,19 @@
+<div class="progress-wrap">
+  <h4 [hidden]="!heading"> {{heading}}</h4>
+  <div class="progress-container">
+
+    <div class='circle-link {{step.cssClass}}' [style.width]="index == 0 ? '0px' : itemWidth" *ngFor="let step of steps; let index=index">
+      <div class="circle-link-text-top timestamp  d-none d-sm-inline-block text-nowrap">
+        <span class="date"><strong>{{step.subtitle}}</strong> <br> {{step.text}} &nbsp;</span>
+      </div>
+
+      <span class='line'></span>
+      <span class='circle-btn'></span>
+      <div class="circle-link-text">
+        <span class="d-none d-sm-inline-block">{{step.title}}</span>
+        <span class="d-sm-none">{{ index + 1 }}</span>
+      </div>
+    </div>
+    <i class="fas fa-caret-up text-warning fa-2x" [style.left.%]="todayOffset" style="position: absolute;top:167px; z-index:99"></i>
+  </div>
+</div>

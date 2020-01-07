@@ -11,14 +11,15 @@ import { Client } from '../core/modules/Client';
 })
 export class ClientComponent implements OnInit {
   selectedClient: any;
-  loading: boolean = false
+  loading: boolean = false;
   clints: Client[] = [];
+  mouseOverSave: false;
   constructor(private modal: NgbModal, private api: DataStoreService) { }
 
   ngOnInit() {
     this.api.getClients().subscribe(data => {
       this.clints = data;
-      
+
     })
   }
 
@@ -26,16 +27,29 @@ export class ClientComponent implements OnInit {
 
   editClient(client) {
     let modalRef = this.modal.open(ManageClientComponent);
-    this.selectedClient = client || {};
+    if (client) {
+      this.selectedClient = client;
+    } else {
+      this.selectedClient = { isActive: true }
+    }
+
+
     modalRef.componentInstance.client = this.selectedClient;
     modalRef.result.then(result => {
-      console.log('Modal result', result);
-      debugger
       this.loading = true;
-      // this.api.save(result).subscribe(data => {
-      //  this.selectedClient= null;
-      //   this.loading = false;
-      // });
+      if (!result.clientId) {
+        this.api.createClient(result).subscribe(data => {
+          this.selectedClient = null;
+          this.loading = false;
+          this.clints.push(data);
+        });
+      } else {
+        this.api.updateClient(result).subscribe(data => {
+          this.selectedClient = null;
+          this.loading = false;
+        });
+      }
+
     }, reason => {
       console.log(`Dismissed reason: ${reason}`);
     });

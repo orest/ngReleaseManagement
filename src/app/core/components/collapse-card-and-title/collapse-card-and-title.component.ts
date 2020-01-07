@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-collapsible-card',
-  templateUrl: './collapsible-card.component.html',
+  selector: 'app-collapse-card-and-title',
+  templateUrl: './collapse-card-and-title.component.html',
   styles: []
 })
-export class CollapsibleCardComponent implements OnInit {
-  @Input() cardTitle: string;
+export class CollapseCardAndTitleComponent implements OnInit {
+
   @Input() startCollapsed: string;
   isVisible = true;
   constructor() { }
@@ -23,5 +23,4 @@ export class CollapsibleCardComponent implements OnInit {
   toggle() {
     this.isVisible = !this.isVisible;
   }
-
 }
