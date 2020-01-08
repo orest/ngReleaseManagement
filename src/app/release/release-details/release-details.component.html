@@ -232,9 +232,20 @@
               <div class="d-flex justify-content-between">
                 <span>{{feature.feature.displayName}}</span>
                 <div>
-                  <button type="button" class="btn btn-danger btn-sm" (click)="removeFeature(feature)">
-                    <i class="fas fa-times"></i>
-                  </button>
+
+                  <div class="d-flex">
+                    <div class="mr-2">
+                      <select [(ngModel)]="feature.statusCode" class="form-control font-9 rounded-pill  bg-success">
+                        <option value="new">New</option>
+                        <option value="in-review">In Review</option>
+                        <option value="progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                      </select>
+                    </div>
+                    <button type="button" class="btn p-0" (click)="removeFeature(feature)">
+                      <i class="material-icons md-18 align-middle">close</i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </li>
@@ -274,9 +285,20 @@
               <div class="d-flex justify-content-between">
                 <span> {{workItem.title }}</span>
                 <div>
-                  <button type="button" class="btn btn-danger btn-sm" (click)="removeWorkItem(workItem)">
-                    <i class="fas fa-times"></i>
-                  </button>
+                  <div class="d-flex">
+                    <div class="mr-2">
+                      <select [(ngModel)]="workItem.statusCode" class="form-control font-9 rounded-pill py-2 bg-primary">
+                        <option value="new">NEW</option>
+                        <option value="InReview">IN REVIEW</option>
+                        <option value="InProgress">IN PROGRESS</option>
+                        <option value="Completed">COMPLETED</option>
+                      </select>
+                    </div>
+
+                    <button type="button" class="btn p-0" (click)="removeWorkItem(workItem)">
+                      <i class="material-icons md-18 align-middle">close</i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </li>
@@ -286,85 +308,85 @@
     </div>
   </div>
 
-  
+
   <div class="main bg-secondary font-13">
     <div class="container pl-7 pt-7 pb-8 ml-0">
-      <div  *ngIf="release">
+      <div *ngIf="release">
         <div class="row">
-            <div class="col-10">
-                <form name="frmRelease" #frmRelease="ngForm" (ngSubmit)="submitForm(frmRelease)">
-                <div class="card hero-card text-center mb-4">
-                    <div class="card-header hero-card-header d-flex flex-row align-items-center">
-                        <div class="mr-auto font-16">Manage Release
-                          <small *ngIf="release" class="text-muted "> {{release.applicationVersion}}</small>
-                        </div>
-                        <ul class="nav nav-pills card-header-pills">
-                            <li class="nav-item pr-2">
-                              <button class="btn btn-outline-secondary" [routerLink]="['/release']" href="#">cancel</button>
-                            </li>
-                            <li class="nav-item">
-                              <span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
-                                <button class="btn btn-primary" type="submit">Save</button>
-                              </span>
-                            </li>
-                        </ul>
+          <div class="col-10">
+            <form name="frmRelease" #frmRelease="ngForm" (ngSubmit)="submitForm(frmRelease)">
+              <div class="card hero-card text-center mb-4">
+                <div class="card-header hero-card-header d-flex flex-row align-items-center">
+                  <div class="mr-auto font-16">Manage Release
+                    <small *ngIf="release" class="text-muted "> {{release.applicationVersion}}</small>
+                  </div>
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item pr-2">
+                      <button class="btn btn-outline-secondary" [routerLink]="['/release']" href="#">cancel</button>
+                    </li>
+                    <li class="nav-item">
+                      <span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <!-- @*version*@ -->
+                  <div class="form-group row">
+                    <label for="applicationVersion" class="col-sm-2 col-form-label text-right">Version</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control font-13" id="applicationVersion" name="applicationVersion" [(ngModel)]="release.applicationVersion" placeholder="x.x.xx">
                     </div>
+                  </div>
 
-                    <div class="card-body">                        
-                            <!-- @*version*@ -->
-                            <div class="form-group row">
-                                <label for="applicationVersion" class="col-sm-2 col-form-label text-right">Version</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control font-13" id="applicationVersion" name="applicationVersion" [(ngModel)]="release.applicationVersion" placeholder="x.x.xx">
+                  <!-- @*platform*@ -->
+                  <div class="row  mb-3">
+                    <div class="col-sm-2 text-right">
+                      <label class="pt-2" for="validationTooltipUsername">Platform</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <div id="accordion">
+                        <div class="card rounded-lg">
+                          <div class="card-header py-0" id="headingOne">
+                            <div class="row">
+                              <div class="col-sm-3 mr-0 border-right p-2 ">
+                                <div class="custom-control custom-switch">
+                                  <input name="iOsRelease" [(ngModel)]="release.iOsRelease" type="checkbox" class="custom-control-input" id="iOsRelease">
+                                  <label class="custom-control-label" for="iOsRelease">iOS</label>
                                 </div>
+                              </div>
+                              <div class="col-sm-3 mr-0 border-right p-2">
+                                <div class="custom-control custom-switch">
+                                  <input name="androidRelease" [(ngModel)]="release.androidRelease" type="checkbox" class="custom-control-input" id="androidRelease">
+                                  <label class="custom-control-label" for="androidRelease">Android</label>
+                                </div>
+                              </div>
+                              <div class="col-sm-6 text-right pr-2 pt-2">
+                                <div class="btn pt-0 pr-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  <i class="material-icons md-18 align-middle">keyboard_arrow_up</i>
+                                </div>
+                              </div>
                             </div>
+                          </div>
 
-                            <!-- @*platform*@ -->
-                            <div class="row  mb-3">
-                                <div class="col-sm-2 text-right">
-                                    <label class="pt-2" for="validationTooltipUsername">Platform</label>
+                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                              <div [hidden]="!release.androidRelease && !release.iOsRelease">
+                                <div class="row mb-2 mt-4">
+                                  <div class="col-sm-2"></div>
+                                  <div class="col-sm-5 text-left font-weight-bold font-12">Platform submitted status</div>
+                                  <div class="col-sm-5 text-left font-weight-bold pl-1 font-12">In store date</div>
                                 </div>
-                                <div class="col-sm-8">
-                                    <div id="accordion">
-                                        <div class="card rounded-lg">
-                                            <div class="card-header py-0" id="headingOne">
-                                                <div class="row">
-                                                    <div class="col-sm-3 mr-0 border-right p-2 ">
-                                                        <div class="custom-control custom-switch">
-                                                            <input name="iOsRelease" [(ngModel)]="release.iOsRelease" type="checkbox" class="custom-control-input" id="iOsRelease">
-                                                            <label class="custom-control-label" for="iOsRelease">iOS</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 mr-0 border-right p-2">
-                                                        <div class="custom-control custom-switch">
-                                                            <input name="androidRelease" [(ngModel)]="release.androidRelease" type="checkbox" class="custom-control-input" id="androidRelease">
-                                                            <label class="custom-control-label" for="androidRelease">Android</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6 text-right pr-2 pt-2">
-                                                        <div class="btn pt-0 pr-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                            <i class="material-icons md-18 align-middle">keyboard_arrow_up</i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                                <div class="card-body">
-                                                  <div [hidden]="!release.androidRelease && !release.iOsRelease">
-                                                    <div class="row mb-2 mt-4">
-                                                        <div class="col-sm-2"></div>
-                                                        <div class="col-sm-5 text-left font-weight-bold font-12">Platform submitted status</div>
-                                                        <div class="col-sm-5 text-left font-weight-bold pl-1 font-12">In store date</div>
-                                                    </div>
-                                                    <div class="row  mb-3" *ngIf="release.iOsRelease">
-                                                        <div class="col-sm-2 text-right pr-0">
-                                                            <label class="pt-2 text-right" for="validationTooltipUsername">iOS</label>
-                                                        </div>
-                                                        <div class="col-sm-10">
-                                                            <div class="form-row">
-                                                                <div class="col-sm-6">
-                                                                    <!-- <div class="input-group">
+                                <div class="row  mb-3" *ngIf="release.iOsRelease">
+                                  <div class="col-sm-2 text-right pr-0">
+                                    <label class="pt-2 text-right" for="validationTooltipUsername">iOS</label>
+                                  </div>
+                                  <div class="col-sm-10">
+                                    <div class="form-row">
+                                      <div class="col-sm-6">
+                                        <!-- <div class="input-group">
                                                                         <input type="text" class="form-control border-right-0" id="validationtooltipusername" aria-describedby="validationtooltipusernameprepend" required>
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text bg-white" id="validationtooltipusernameprepend">
@@ -372,373 +394,373 @@
                                                                             </span>
                                                                         </div>
                                                                     </div> -->
-                                                                    <app-date-input-group [(ngModel)]="release.iosPlatfrom.submittedForApprovalDate" name="i-submittedForApprovalDate" size="sm"></app-date-input-group>
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <app-date-input-group [(ngModel)]="release.iosPlatfrom.availableInStoreDate" name="i-availableInStoreDate" size="sm"></app-date-input-group>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row  mb-3" *ngIf="release.androidRelease">
-                                                        <div class="col-sm-2 text-right pr-0">
-                                                            <label class="pt-2 text-right" for="validationTooltipUsername">Android</label>
-                                                        </div>
-                                                        <div class="col-sm-10">
-                                                            <div class="form-row">
-                                                                <div class="col-sm-6">
-                                                                    <app-date-input-group [(ngModel)]="release.androidPlatfrom.submittedForApprovalDate" name="a-submittedForApprovalDate" size="sm"></app-date-input-group>
-                                                                </div>
-                                                                <div class="col-sm-6">                                                                  
-                                                                    <app-date-input-group [(ngModel)]="release.androidPlatfrom.availableInStoreDate" name="a-availableInStoreDate" size="sm"></app-date-input-group>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <app-date-input-group [(ngModel)]="release.iosPlatfrom.submittedForApprovalDate" name="i-submittedForApprovalDate" size="sm"></app-date-input-group>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <app-date-input-group [(ngModel)]="release.iosPlatfrom.availableInStoreDate" name="i-availableInStoreDate" size="sm"></app-date-input-group>
+                                      </div>
                                     </div>
+                                  </div>
                                 </div>
-                            </div>
-
-                            <!-- @*status*@ -->
-                            <div class="form-group row">
-                                <label for="status" class="col-sm-2 col-form-label text-right">Status</label>
-                                <div class="col-sm-8 text-left pt-2">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="statusCode" id="statusNew" value="new" [(ngModel)]="release.statusCode">
-                                        <label class="form-check-label" for="statusNew">New</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="statusCode" id="statusInProgress" value="inprogress" [(ngModel)]="release.statusCode">
-                                        <label class="form-check-label" for="statusInProgress">In Progress</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="statusCode" id="statusCompleted" value="completed" [(ngModel)]="release.statusCode">
-                                        <label class="form-check-label" for="statusCompleted">Completed</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- @*release date*@ -->
-                            <div class="row  mb-3">
-                                <div class="col-sm-2 text-right">
-                                    <label class="pt-2" for="validationTooltipUsername">Release Date</label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <app-date-input-group [(ngModel)]="release.releaseDate" name="releaseDate" size="sm"></app-date-input-group>
-                                </div>
-                            </div>
-
-                            <!-- @*client*@ -->
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label text-right">Client</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control font-13" name="clientId" [(ngModel)]="release.clientId">
-                                        <option value=""></option>
-                                        <option [value]="client.clientId" *ngFor="let client of clients"> {{client.clientName}}</option>
-                                      </select>
-                                </div>
-                            </div>
-
-                            <!-- @*qa dates*@ -->
-                            <div class="row  mb-3">
-                                <div class="col-sm-2 text-right">
-                                    <label class="pt-2 text-right" for="validationTooltipUsername">QA Dates</label>
-                                </div>
-                                <div class="col-sm-8">
+                                <div class="row  mb-3" *ngIf="release.androidRelease">
+                                  <div class="col-sm-2 text-right pr-0">
+                                    <label class="pt-2 text-right" for="validationTooltipUsername">Android</label>
+                                  </div>
+                                  <div class="col-sm-10">
                                     <div class="form-row">
-                                        <div class="col-sm-6">                         
-                                          <app-date-input-group [(ngModel)]="release.qaStartDate" name="qaStartDate" prepend="from"></app-date-input-group>
-                                        </div>
-                                        <div class="col-sm-6">                     
-                                          <app-date-input-group [(ngModel)]="release.qaEndDate" name="qaEndDate" prepend="to"></app-date-input-group>
-                                        </div>
+                                      <div class="col-sm-6">
+                                        <app-date-input-group [(ngModel)]="release.androidPlatfrom.submittedForApprovalDate" name="a-submittedForApprovalDate" size="sm"></app-date-input-group>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <app-date-input-group [(ngModel)]="release.androidPlatfrom.availableInStoreDate" name="a-availableInStoreDate" size="sm"></app-date-input-group>
+                                      </div>
                                     </div>
+                                  </div>
                                 </div>
+                              </div>
                             </div>
-
-                            <!-- @*uat dates*@ -->
-                            <div class="row  mb-3">
-                                <div class="col-sm-2 text-right">
-                                    <label class="pt-2" for="validationTooltipUsername">UAT Dates</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="form-row">
-                                        <div class="col-sm-6">
-                                          <app-date-input-group [(ngModel)]="release.uatStartDate" name="uatStartDate" prepend="from"></app-date-input-group>                                        
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <app-date-input-group [(ngModel)]="release.uatEndDate" name="uatEndDate" prepend="to"></app-date-input-group>                                           
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- @*client approver*@ -->
-                            <div class="form-group row">
-                                <label for="clientApprover" class="col-sm-2 col-form-label text-right">Client Approver</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="clientApproverName" [(ngModel)]="release.clientApproverName">
-                                </div>
-                            </div>
-
-                            <!-- @*notes*@ -->
-                            <div class="form-group row">
-                                <label for="notes" class="col-sm-2 col-form-label text-right">Notes</label>
-                                <div class="col-sm-8">
-                                  <textarea class="form-control" name="notes" [(ngModel)]="release.notes"></textarea>
-                                </div>
-                            </div>                        
-                    </div>
-                </div>
-              </form>
-
-                <div class="row">
-                    <!-- @*features*@ -->
-                    <div class="col-sm-6">
-                        <div id="accordion2">
-                            <div class="card hero-card">
-                                <div class="card-header hero-card-header d-flex flex-row align-items-center" id="heading2">
-                                    <div class="mr-auto font-16">Features</div>
-                                    <div class="">
-                                        <div class="btn pr-0" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                                            <i class="material-icons md-18 align-middle">keyboard_arrow_up</i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion2">
-                                    <div class="card-body">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-10">
-                                                <select id="inputFeature" class="form-control font-13">
-                                                    <option>Paperless Enrollment</option>
-                                                    <option>Forgot Passworkd</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <button class="btn btn-secondary">ADD</button>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-sm-7 py-2">
-                                                Paperless Enrollment
-                                            </div>
-                                            <div class="col-sm-4 py-1 pl-4">
-                                                <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-primary">
-                                                    <option selected>NEW</option>
-                                                    <option>IN REVIEW</option>
-                                                    <option>IN PROGRESS</option>
-                                                    <option>COMPLETED</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-1 py-2 pl-0">
-                                                <button class="btn p-0">
-                                                    <i class="material-icons md-18 align-middle">close</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-sm-7 py-2">
-                                                Forgot Password
-                                            </div>
-                                            <div class="col-sm-4 py-1 pl-4">
-                                                <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-danger">
-                                                    <option>NEW</option>
-                                                    <option selected>IN REVIEW</option>
-                                                    <option>IN PROGRESS</option>
-                                                    <option>COMPLETED</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-1 py-2 pl-0">
-                                                <button class="btn p-0">
-                                                    <i class="material-icons md-18 align-middle">close</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-sm-7 py-2">
-                                                Enrollment
-                                            </div>
-                                            <div class="col-sm-4 py-1 pl-4">
-                                                <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
-                                                    <option>NEW</option>
-                                                    <option>IN REVIEW</option>
-                                                    <option selected>IN PROGRESS</option>
-                                                    <option>COMPLETED</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-1 py-2 pl-0">
-                                                <button class="btn p-0">
-                                                    <i class="material-icons md-18 align-middle">close</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-sm-7 py-2">
-                                                Payment count completed warning
-                                            </div>
-                                            <div class="col-sm-4 py-1 pl-4">
-                                                <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
-                                                    <option>NEW</option>
-                                                    <option>IN REVIEW</option>
-                                                    <option selected>IN PROGRESS</option>
-                                                    <option>COMPLETED</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-1 py-2 pl-0">
-                                                <button class="btn p-0">
-                                                    <i class="material-icons md-18 align-middle">close</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-sm-7 py-2">
-                                                Fix Date Payment option for Recurring Schedule
-                                            </div>
-                                            <div class="col-sm-4 py-1 pl-4">
-                                                <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-dark">
-                                                    <option>NEW</option>
-                                                    <option>IN REVIEW</option>
-                                                    <option>IN PROGRESS</option>
-                                                    <option selected>COMPLETED</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-1 py-2 pl-0">
-                                                <button class="btn p-0">
-                                                    <i class="material-icons md-18 align-middle">close</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="mt-2">
-                                            <div class="p-2 border-top"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
-                    <!-- @*additional work*@ -->
-                    <div class="col-sm-6">
-                        <div id="accordion3">
-                            <div class="card hero-card">
-                                <div class="card-header hero-card-header d-flex flex-row align-items-center" id="heading3">
-                                    <div class="mr-auto font-16">Additional Work Items</div>
-                                    <div class="">
-                                        <div class="btn pr-0" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                                            <i class="material-icons md-18 align-middle">keyboard_arrow_up</i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="collapse3" class="collapse show" aria-labelledby="heading3" data-parent="#accordion3">
-                                    <div class="card-body p-0 pb-4">
-                                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link py-3 active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bug</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link py-3" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Enchancement</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link py-3" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Maintenance</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content pr-4 pl-4 pb-4" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                <div class="row mb-3 pt-4">
-                                                    <div class="col-sm-10">
-                                                        <select id="inputFeature" class="form-control font-13">
-                                                            <option></option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <button class="btn btn-secondary">ADD</button>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-4">
-                                                    <div class="col-sm-7 py-2">
-                                                        Quick Freeze Notification
-                                                    </div>
-                                                    <div class="col-sm-4 py-1 pl-4">
-                                                        <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
-                                                            <option>NEW</option>
-                                                            <option>IN REVIEW</option>
-                                                            <option selected>IN PROGRESS</option>
-                                                            <option>COMPLETED</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-1 py-2 pl-0">
-                                                        <button class="btn p-0">
-                                                            <i class="material-icons md-18 align-middle">close</i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-4">
-                                                    <div class="col-sm-7 py-2">
-                                                        Payment Warning Message
-                                                    </div>
-                                                    <div class="col-sm-4 py-1 pl-4">
-                                                        <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
-                                                            <option>NEW</option>
-                                                            <option>IN REVIEW</option>
-                                                            <option selected>IN PROGRESS</option>
-                                                            <option>COMPLETED</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-1 py-2 pl-0">
-                                                        <button class="btn p-0">
-                                                            <i class="material-icons md-18 align-middle">close</i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-4">
-                                                    <div class="col-sm-7 py-2">
-                                                        eSign Changes
-                                                    </div>
-                                                    <div class="col-sm-4 py-1 pl-4">
-                                                        <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
-                                                            <option>NEW</option>
-                                                            <option>IN REVIEW</option>
-                                                            <option>IN PROGRESS</option>
-                                                            <option>COMPLETED</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-1 py-2 pl-0">
-                                                        <button class="btn p-0">
-                                                            <i class="material-icons md-18 align-middle">close</i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                                <div class="pt-4">
-                                                    Enchancements
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                                <div class="pt-4">
-                                                    Maintenance
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-2 px-4">
-                                            <div class="p-2 border-top"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                  </div>
+
+                  <!-- @*status*@ -->
+                  <div class="form-group row">
+                    <label for="status" class="col-sm-2 col-form-label text-right">Status</label>
+                    <div class="col-sm-8 text-left pt-2">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="statusCode" id="statusNew" value="new" [(ngModel)]="release.statusCode">
+                        <label class="form-check-label" for="statusNew">New</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="statusCode" id="statusInProgress" value="inprogress" [(ngModel)]="release.statusCode">
+                        <label class="form-check-label" for="statusInProgress">In Progress</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="statusCode" id="statusCompleted" value="completed" [(ngModel)]="release.statusCode">
+                        <label class="form-check-label" for="statusCompleted">Completed</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- @*release date*@ -->
+                  <div class="row  mb-3">
+                    <div class="col-sm-2 text-right">
+                      <label class="pt-2" for="validationTooltipUsername">Release Date</label>
+                    </div>
+                    <div class="col-sm-4">
+                      <app-date-input-group [(ngModel)]="release.releaseDate" name="releaseDate" size="sm"></app-date-input-group>
+                    </div>
+                  </div>
+
+                  <!-- @*client*@ -->
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label text-right">Client</label>
+                    <div class="col-sm-8">
+                      <select class="form-control font-13" name="clientId" [(ngModel)]="release.clientId">
+                        <option value=""></option>
+                        <option [value]="client.clientId" *ngFor="let client of clients"> {{client.clientName}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- @*qa dates*@ -->
+                  <div class="row  mb-3">
+                    <div class="col-sm-2 text-right">
+                      <label class="pt-2 text-right" for="validationTooltipUsername">QA Dates</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <div class="form-row">
+                        <div class="col-sm-6">
+                          <app-date-input-group [(ngModel)]="release.qaStartDate" name="qaStartDate" prepend="from"></app-date-input-group>
                         </div>
+                        <div class="col-sm-6">
+                          <app-date-input-group [(ngModel)]="release.qaEndDate" name="qaEndDate" prepend="to"></app-date-input-group>
+                        </div>
+                      </div>
                     </div>
+                  </div>
+
+                  <!-- @*uat dates*@ -->
+                  <div class="row  mb-3">
+                    <div class="col-sm-2 text-right">
+                      <label class="pt-2" for="validationTooltipUsername">UAT Dates</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <div class="form-row">
+                        <div class="col-sm-6">
+                          <app-date-input-group [(ngModel)]="release.uatStartDate" name="uatStartDate" prepend="from"></app-date-input-group>
+                        </div>
+                        <div class="col-sm-6">
+                          <app-date-input-group [(ngModel)]="release.uatEndDate" name="uatEndDate" prepend="to"></app-date-input-group>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- @*client approver*@ -->
+                  <div class="form-group row">
+                    <label for="clientApprover" class="col-sm-2 col-form-label text-right">Client Approver</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" name="clientApproverName" [(ngModel)]="release.clientApproverName">
+                    </div>
+                  </div>
+
+                  <!-- @*notes*@ -->
+                  <div class="form-group row">
+                    <label for="notes" class="col-sm-2 col-form-label text-right">Notes</label>
+                    <div class="col-sm-8">
+                      <textarea class="form-control" name="notes" [(ngModel)]="release.notes"></textarea>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </form>
+
+            <div class="row">
+              <!-- @*features*@ -->
+              <div class="col-sm-6">
+                <div id="accordion2">
+                  <div class="card hero-card">
+                    <div class="card-header hero-card-header d-flex flex-row align-items-center" id="heading2">
+                      <div class="mr-auto font-16">Features</div>
+                      <div class="">
+                        <div class="btn pr-0" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                          <i class="material-icons md-18 align-middle">keyboard_arrow_up</i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="collapse2" class="collapse show" aria-labelledby="heading2" data-parent="#accordion2">
+                      <div class="card-body">
+                        <div class="row mb-3">
+                          <div class="col-sm-10">
+                            <select id="inputFeature" class="form-control font-13">
+                              <option>Paperless Enrollment</option>
+                              <option>Forgot Passworkd</option>
+                            </select>
+                          </div>
+                          <div class="col-sm-2">
+                            <button class="btn btn-secondary">ADD</button>
+                          </div>
+                        </div>
+                        <div class="row mb-4">
+                          <div class="col-sm-7 py-2">
+                            Paperless Enrollment
+                          </div>
+                          <div class="col-sm-4 py-1 pl-4">
+                            <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-primary">
+                              <option selected>NEW</option>
+                              <option>IN REVIEW</option>
+                              <option>IN PROGRESS</option>
+                              <option>COMPLETED</option>
+                            </select>
+                          </div>
+                          <div class="col-sm-1 py-2 pl-0">
+                            <button class="btn p-0">
+                              <i class="material-icons md-18 align-middle">close</i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row mb-4">
+                          <div class="col-sm-7 py-2">
+                            Forgot Password
+                          </div>
+                          <div class="col-sm-4 py-1 pl-4">
+                            <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-danger">
+                              <option>NEW</option>
+                              <option selected>IN REVIEW</option>
+                              <option>IN PROGRESS</option>
+                              <option>COMPLETED</option>
+                            </select>
+                          </div>
+                          <div class="col-sm-1 py-2 pl-0">
+                            <button class="btn p-0">
+                              <i class="material-icons md-18 align-middle">close</i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row mb-4">
+                          <div class="col-sm-7 py-2">
+                            Enrollment
+                          </div>
+                          <div class="col-sm-4 py-1 pl-4">
+                            <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
+                              <option>NEW</option>
+                              <option>IN REVIEW</option>
+                              <option selected>IN PROGRESS</option>
+                              <option>COMPLETED</option>
+                            </select>
+                          </div>
+                          <div class="col-sm-1 py-2 pl-0">
+                            <button class="btn p-0">
+                              <i class="material-icons md-18 align-middle">close</i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row mb-4">
+                          <div class="col-sm-7 py-2">
+                            Payment count completed warning
+                          </div>
+                          <div class="col-sm-4 py-1 pl-4">
+                            <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
+                              <option>NEW</option>
+                              <option>IN REVIEW</option>
+                              <option selected>IN PROGRESS</option>
+                              <option>COMPLETED</option>
+                            </select>
+                          </div>
+                          <div class="col-sm-1 py-2 pl-0">
+                            <button class="btn p-0">
+                              <i class="material-icons md-18 align-middle">close</i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row mb-4">
+                          <div class="col-sm-7 py-2">
+                            Fix Date Payment option for Recurring Schedule
+                          </div>
+                          <div class="col-sm-4 py-1 pl-4">
+                            <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-dark">
+                              <option>NEW</option>
+                              <option>IN REVIEW</option>
+                              <option>IN PROGRESS</option>
+                              <option selected>COMPLETED</option>
+                            </select>
+                          </div>
+                          <div class="col-sm-1 py-2 pl-0">
+                            <button class="btn p-0">
+                              <i class="material-icons md-18 align-middle">close</i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="mt-2">
+                          <div class="p-2 border-top"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- @*additional work*@ -->
+              <div class="col-sm-6">
+                <div id="accordion3">
+                  <div class="card hero-card">
+                    <div class="card-header hero-card-header d-flex flex-row align-items-center" id="heading3">
+                      <div class="mr-auto font-16">Additional Work Items</div>
+                      <div class="">
+                        <div class="btn pr-0" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                          <i class="material-icons md-18 align-middle">keyboard_arrow_up</i>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="collapse3" class="collapse show" aria-labelledby="heading3" data-parent="#accordion3">
+                      <div class="card-body p-0 pb-4">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link py-3 active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bug</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link py-3" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Enchancement</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link py-3" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Maintenance</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content pr-4 pl-4 pb-4" id="myTabContent">
+                          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row mb-3 pt-4">
+                              <div class="col-sm-10">
+                                <select id="inputFeature" class="form-control font-13">
+                                  <option></option>
+                                </select>
+                              </div>
+                              <div class="col-sm-2">
+                                <button class="btn btn-secondary">ADD</button>
+                              </div>
+                            </div>
+                            <div class="row mb-4">
+                              <div class="col-sm-7 py-2">
+                                Quick Freeze Notification
+                              </div>
+                              <div class="col-sm-4 py-1 pl-4">
+                                <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
+                                  <option>NEW</option>
+                                  <option>IN REVIEW</option>
+                                  <option selected>IN PROGRESS</option>
+                                  <option>COMPLETED</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-1 py-2 pl-0">
+                                <button class="btn p-0">
+                                  <i class="material-icons md-18 align-middle">close</i>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="row mb-4">
+                              <div class="col-sm-7 py-2">
+                                Payment Warning Message
+                              </div>
+                              <div class="col-sm-4 py-1 pl-4">
+                                <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
+                                  <option>NEW</option>
+                                  <option>IN REVIEW</option>
+                                  <option selected>IN PROGRESS</option>
+                                  <option>COMPLETED</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-1 py-2 pl-0">
+                                <button class="btn p-0">
+                                  <i class="material-icons md-18 align-middle">close</i>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="row mb-4">
+                              <div class="col-sm-7 py-2">
+                                eSign Changes
+                              </div>
+                              <div class="col-sm-4 py-1 pl-4">
+                                <select id="inputStatus" class="form-control font-9 rounded-pill py-2 bg-success">
+                                  <option>NEW</option>
+                                  <option>IN REVIEW</option>
+                                  <option>IN PROGRESS</option>
+                                  <option>COMPLETED</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-1 py-2 pl-0">
+                                <button class="btn p-0">
+                                  <i class="material-icons md-18 align-middle">close</i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="pt-4">
+                              Enchancements
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="pt-4">
+                              Maintenance
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mt-2 px-4">
+                          <div class="p-2 border-top"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>              
-      </div>          
+          </div>
+        </div>
+      </div>
     </div>
 
- </div>
+  </div>
 
 
   <!-- <pre>{{release | json}}</pre> -->
