@@ -92,20 +92,38 @@ export class ReleaseService {
   }
 
   removeFeatureFromRelease(featureId) {
-    const url = `${this.baseUrl}ReleaseFeatures/${featureId}` ;
+    const url = `${this.baseUrl}ReleaseFeatures/${featureId}`;
     return this.http.delete(url).pipe(
       tap(data => console.log(data)),
       catchError(this.handleError)
     );
   }
 
-  addWrokItemToRelease(workItem) {
-    var url = `${this.baseUrl}/WorkItems`;
+
+  updateReleaseFeatures(releaseFeature) {
+    const url = `${this.baseUrl}/ReleaseFeatures/${releaseFeature.releaseFeatureId}`;
+    return this.http.put<ReleaseFeature>(url, releaseFeature).pipe(
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+    );
+  }
+
+  addWorkItemToRelease(workItem) {
+    const url = `${this.baseUrl}/WorkItems`;
     return this.http.post<Release>(url, workItem).pipe(
       tap(data => console.log(data)),
       catchError(this.handleError)
     );
   }
+  updateWorkItem(workItem) {
+    const url = `${this.baseUrl}/WorkItems/${workItem.workItemId}`;
+    return this.http.put<Release>(url, workItem).pipe(
+      tap(data => console.log(data)),
+      catchError(this.handleError)
+    );
+  }
+
+
 
   removeWorkItem(workItem) {
     var url = `${this.baseUrl}/WorkItems/${workItem.workItemId}`;

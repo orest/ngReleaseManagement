@@ -5,6 +5,8 @@ $color-gray-dark: #4c4e4b;
 $theme-colors: (  "primary": $primary);
 $tooltip-bg: $color-highlight;
 $timeline-border-color-today: #9954BB;
+
+.progress-wrap {overflow: hidden;}
 .progress-wrap h1{text-align: center;}
 .progress-container{margin-bottom: 30px; margin-left: 20px}
 .progress-container:after { clear: both; display: table; content: " "; }
