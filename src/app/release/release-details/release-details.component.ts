@@ -7,6 +7,7 @@ import { ReleaseService } from '../release.service';
 import { Route } from '@angular/compiler/src/core';
 import { ReleasePlatform } from '../../core/modules/ReleasePlatform';
 import { Feature } from 'src/app/core/modules/Feature';
+import { HeaderService } from '../../layout/header/header.service';
 
 @Component({
 
@@ -37,9 +38,12 @@ export class ReleaseDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private dataService: DataStoreService,
     private releaseService: ReleaseService,
-    private router: Router) { }
+    private router: Router,
+    private headerService: HeaderService) { }
 
   ngOnInit() {
+    this.headerService.setTitle('Release', 'filter_none');
+
     this.sub = this.route.params.subscribe(params => {
       this.id = +params.id;
       if (this.id > 0) {

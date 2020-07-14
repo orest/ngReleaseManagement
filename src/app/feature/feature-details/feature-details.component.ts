@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Feature } from 'src/app/core/modules/Feature';
 import { Route, ActivatedRoute, Router } from '@angular/router';
 import { DataStoreService } from '../../core/services/data-store.service';
+import { HeaderService } from '../../layout/header/header.service';
 
 @Component({
   selector: 'app-feature-details',
@@ -23,11 +24,14 @@ export class FeatureDetailsComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private dataService: DataStoreService,
-    private router: Router) {
+    private router: Router,
+    private headerService: HeaderService) {
 
   }
 
   ngOnInit() {
+    this.headerService.setTitle('Features', 'settings_applications');
+
     this.featureForm = this.fb.group({
       displayName: ["", [Validators.required, Validators.maxLength(50)]],
       description: "",
