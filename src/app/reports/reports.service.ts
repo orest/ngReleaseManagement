@@ -18,4 +18,11 @@ export class ReportsService {
     
         );
       }
+
+    getReleaseFeatures(): Observable<any[]> {
+        return this.http.get<any[]>(`${this.baseUrl}ReleaseFeatures`).pipe(
+          tap(data => console.log(data))
+    
+        );
+    }
 }

@@ -67,7 +67,7 @@ export class DataStoreService {
   }
 
   getWorkItemTypes() {
-    this.http.get<any[]>(this.baseUrl + "/lookup/work-item-types");
+    this.http.get<any[]>(this.baseUrl + "lookup/work-item-types");
   }
 
 

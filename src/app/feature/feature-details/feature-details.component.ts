@@ -14,6 +14,7 @@ export class FeatureDetailsComponent implements OnInit {
   featureForm: FormGroup;
   private sub: any;
   id: number;
+  mouseOverSave = false;
 
   feature: Feature;
   featureTypes = [
