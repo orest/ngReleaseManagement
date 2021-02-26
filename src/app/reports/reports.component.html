@@ -1,55 +1,104 @@
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+<div class="reports">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 
-<ngb-tabset [destroyOnHide]="false">
-	<ngb-tab title="Latest Release">
-		<ng-template ngbTabContent>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-body">
-						<table class="table table-striped table-bordered">
-							<thead class="thead-dark">
-								<tr>
-									<th>Version</th>
-									<th>Client</th>
-									<th>Status</th>
-									<th>Release Date</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let release of releases">
-									<td>
-										<a [routerLink]="['/release', release.release.releaseId]" >{{release.release.applicationVersion}}</a>
-									</td>
-									<td> {{release.release.clientName}}</td>
-									<td> {{release.release.statusCode}}</td>
-									<td>{{release.release.releaseDate|date}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-		</ng-template>
-	</ngb-tab>
-	<ngb-tab title="Client Features">
-		<ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-		<p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-		craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-		cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-		yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-		shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-		sint qui sapiente accusamus tattooed echo park.</p>
-		</ng-template>
-	</ngb-tab>
-	<ngb-tab title="Next">
-		<ng-template ngbTabContent>
-		<p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
-		</ng-template>
-	</ngb-tab>
-</ngb-tabset>
+  <ngb-tabset [destroyOnHide]="false">
+    <ngb-tab title="Latest Release">
+      <ng-template ngbTabContent>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Version</th>
+                    <th>Client</th>
+                    <th>Status</th>
+                    <th>Release Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let release of releases">
+                    <td>
+                      <a [routerLink]="['/release', release.release.releaseId]" >{{release.release.applicationVersion}}</a>
+                    </td>
+                    <td> {{release.release.clientName}}</td>
+                    <td> {{release.release.statusCode}}</td>
+                    <td>{{release.release.releaseDate|date}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <div (click)="getClientFeatures()">Client Features</div>
+    </ng-template>
+      <ng-template ngbTabContent>
+        <table class="table table-striped table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>Feature</th>
+              <th>Merrick</th>
+              <th>Ollo</th>
+              <th>Open Sky</th>
+              <th>Ember</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="dataReady">
+            <tr *ngFor="let data of clientFeatureDatas">
+              <td class="font-weight-bold">{{data.featureName}}</td>
+              <td class="text-center">
+                <div class="d-flex align-items-center justify-content-around">
+                  <div><i [style.color]="data.Merrick.featStatusColor" class="material-icons">{{data.Merrick.statusClass}}</i></div>
+                  <div>
+                    <div *ngIf="data.Merrick.appVer"><strong><a [routerLink]="['/release', data.Merrick.relId]">v{{data.Merrick.appVer}}</a></strong></div>
+                    <div *ngIf="data.Merrick.statusClass === 'done'" class="font-12">{{data.Merrick.relDate}}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                <div class="d-flex align-items-center justify-content-around">
+                  <div><i [style.color]="data.Ollo.featStatusColor" class="material-icons">{{data.Ollo.statusClass}}</i></div>
+                  <div>
+                    <div *ngIf="data.Ollo.appVer"><strong><a [routerLink]="['/release', data.Ollo.relId]">v{{data.Ollo.appVer}}</a></strong></div>
+                    <div *ngIf="data.Ollo.statusClass === 'done'" class="font-12">{{data.Ollo.relDate}}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                <div class="d-flex align-items-center justify-content-around">
+                  <div><i [style.color]="data.OpenSky.featStatusColor" class="material-icons">{{data.OpenSky.statusClass}}</i></div>
+                  <div>
+                    <div *ngIf="data.OpenSky.appVer"><strong><a [routerLink]="['/release', data.OpenSky.relId]">v{{data.OpenSky.appVer}}</a></strong></div>
+                    <div *ngIf="data.OpenSky.statusClass === 'done'" class="font-12">{{data.OpenSky.relDate}}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                <div class="d-flex align-items-center justify-content-around">
+                  <div><i [style.color]="data.Ember.featStatusColor" class="material-icons">{{data.Ember.statusClass}}</i></div>
+                  <div>
+                    <div *ngIf="data.Ember.appVer"><strong><a [routerLink]="['/release', data.Ember.relId]">v{{data.Ember.appVer}}</a></strong></div>
+                    <div *ngIf="data.Ember.statusClass === 'done'" class="font-12">{{data.Ember.relDate}}</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Next">
+      <ng-template ngbTabContent>
+      <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 
-<button (click)="getAllData()">check</button>
-
-
+  <!-- <button (click)="getClientFeatures()">check</button> -->
+</div>
