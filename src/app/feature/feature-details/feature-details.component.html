@@ -1,9 +1,11 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+
 <div class="row">
 	<div class="col-md-12 ">
 		<div class="card card hero-card text-center mb-4">
-			<form novalidate (ngSubmit)="save()" [formGroup]="featureForm">				
+			<form novalidate (ngSubmit)="save()" [formGroup]="featureForm">
 				<div class="card-header hero-card-header d-flex flex-row align-items-center">
-					<div class="mr-auto font-16">Manage Feature: {{feature.displayName}}</div>
+					<div *ngIf="!loading" class="mr-auto font-16">Manage Feature: {{feature.displayName}}</div>
 					<ul class="nav nav-pills card-header-pills">
 					  <li class="nav-item pr-2">
 						<a class="btn btn-outline-secondary" href="#" [routerLink]="['/feature']">cancel</a>

@@ -20,6 +20,7 @@ import * as moment from 'moment';
 export class ReportsComponent implements OnInit {
 
   releases: Release[] = [];
+  latestReleases: any = [];
   clients: Client[] = [];
   clientFeatures: ClientFeatures[] = [];
   features: Feature[] = [];
@@ -53,7 +54,7 @@ export class ReportsComponent implements OnInit {
     this.loading = true
 		this.dataReportsService.getReleases().subscribe(data => {
 			if (data) {
-				this.releases = this.sortData(data);
+				this.latestReleases = this.sortData(data);
 				this.loading = false;
 			}
 		})
@@ -71,7 +72,7 @@ export class ReportsComponent implements OnInit {
     var sortedClients = this.clients.sort(function(a, b){return a.clientId - b.clientId});
 
     this.features.forEach(element => {
-      var obj = { "featureName": element.displayName };
+      var obj = { "featureName": element.displayName, "featureId": element.featureId };
 
 
       var clientsPerFeature = this.clientFeatures.filter(a => a.featureId === element.featureId);

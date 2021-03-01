@@ -18,9 +18,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let release of releases">
+                  <tr *ngFor="let release of latestReleases">
                     <td>
-                      <a [routerLink]="['/release', release.release.releaseId]" >{{release.release.applicationVersion}}</a>
+                      <a [routerLink]="['/release', release.release.releaseId]">{{release.release.applicationVersion}}</a>
                     </td>
                     <td> {{release.release.clientName}}</td>
                     <td> {{release.release.statusCode}}</td>
@@ -51,7 +51,9 @@
           </thead>
           <tbody *ngIf="dataReady">
             <tr *ngFor="let data of clientFeatureDatas">
-              <td class="font-weight-bold">{{data.featureName}}</td>
+              <td>
+                <span  class="font-weight-bold">{{data.featureName}}</span> (<a [routerLink]="['/feature', data.featureId]">details</a>)
+              </td>
               <td class="text-center">
                 <div class="d-flex align-items-center justify-content-around">
                   <div><i [style.color]="data.Merrick.featStatusColor" class="material-icons">{{data.Merrick.statusClass}}</i></div>

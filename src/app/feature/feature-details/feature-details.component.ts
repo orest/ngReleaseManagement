@@ -15,6 +15,7 @@ export class FeatureDetailsComponent implements OnInit {
   private sub: any;
   id: number;
   mouseOverSave = false;
+  loading: boolean = false;
 
   feature: Feature;
   featureTypes = [
@@ -32,6 +33,7 @@ export class FeatureDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.headerService.setTitle('Features', 'settings_applications');
+    this.loading = true;
 
     this.featureForm = this.fb.group({
       displayName: ["", [Validators.required, Validators.maxLength(50)]],
@@ -47,7 +49,7 @@ export class FeatureDetailsComponent implements OnInit {
       this.id = +params.id;
       if (this.id > 0) {
         this.dataService.getFeature(this.id).subscribe(response => {
-
+          this.loading = false;
           this.feature = response;
           this.featureForm.patchValue({
             displayName: response.displayName,
