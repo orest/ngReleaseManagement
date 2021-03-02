@@ -52,7 +52,8 @@
           <tbody *ngIf="dataReady">
             <tr *ngFor="let data of clientFeatureDatas">
               <td>
-                <span  class="font-weight-bold">{{data.featureName}}</span> (<a [routerLink]="['/feature', data.featureId]">details</a>)
+                <span class="font-weight-bold">{{data.featureName}}</span>
+                <a [routerLink]="['/feature', data.featureId]"><i class="material-icons align-middle">keyboard_arrow_right</i></a>
               </td>
               <td class="text-center">
                 <div class="d-flex align-items-center justify-content-around">
