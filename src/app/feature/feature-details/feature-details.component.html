@@ -1,106 +1,102 @@
-<div>
-		<form novalidate (ngSubmit)="save()" [formGroup]="featureForm">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h3 class=" my-3 ">Manage Feature
-							<small class="text-muted " *ngIf="feature && feature.displayName">:: {{feature.displayName}} </small>
-						</h3>
-					</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+
+<div class="row">
+	<div class="col-md-12 ">
+		<div class="card card hero-card text-center mb-4">
+			<form novalidate (ngSubmit)="save()" [formGroup]="featureForm">
+				<div class="card-header hero-card-header d-flex flex-row align-items-center">
+					<div *ngIf="!loading" class="mr-auto font-16">Manage Feature: {{feature.displayName}}</div>
+					<ul class="nav nav-pills card-header-pills">
+					  <li class="nav-item pr-2">
+						<a class="btn btn-outline-secondary" href="#" [routerLink]="['/feature']">cancel</a>
+					  </li>
+					  <li class="nav-item">
+						<span (mouseenter)="mouseOverSave=true" (mouseleave)="mouseOverSave=false">
+						  <button type="submit" class="btn btn-primary" [disabled]="!featureForm.valid">Save feature </button>
+						</span>
+					  </li>
+					</ul>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
+						<div class="card-body">
+							<div class="form-group row">
+								<label for="displayName" class="col-sm-2 col-form-label text-right">Name</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="displayName" formControlName="displayName">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="description" class="col-sm-2 col-form-label text-right">Description</label>
+								<div class="col-sm-9">
+									<textarea type="text" class="form-control" id="description" formControlName="description"> </textarea>
+								</div>
+							</div>
 
-						<div class="card">
-							<div class="card-body">
-								<div class="form-group row">
-									<label for="displayName" class="col-sm-2 col-form-label">Name</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="displayName" formControlName="displayName">
+
+							<div class="form-group row">
+								<label for="" class="col-sm-2 col-form-label text-right">Status</label>
+								<div class="col-sm-9 pt-2 text-left">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="statusNew" name="statusCode" value="new" formControlName="statusCode">
+										<label class="custom-control-label" for="statusNew">New</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="statusInProgress" name="statusCode" value="inprogress" formControlName="statusCode">
+										<label class="custom-control-label" for="statusInProgress">In Progress</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input" id="statusCompleted" name="statusCode" value="completed" formControlName="statusCode">
+										<label class="custom-control-label" for="statusCompleted">Completed</label>
 									</div>
 								</div>
-								<div class="form-group row">
-									<label for="description" class="col-sm-2 col-form-label">Description</label>
-									<div class="col-sm-9">
-										<textarea type="text" class="form-control" id="description" formControlName="description"> </textarea>
-									</div>
+							</div>
+
+
+							<div class="form-group row">
+								<label for="startDate" class="col-sm-2 col-form-label text-right">Start Date </label>
+								<div class="col-md-4">
+									<input type="date" class="form-control" id="startDate" formControlName="startDate">
 								</div>
+							</div>
 
-
-								<div class="form-group row">
-									<label for="" class="col-sm-2 col-form-label">Status</label>
-									<div class="col-sm-9 pt-2">
-										<div class="custom-control custom-radio custom-control-inline">
-											<input type="radio" class="custom-control-input" id="statusNew" name="statusCode" value="new" formControlName="statusCode">
-											<label class="custom-control-label" for="statusNew">New</label>
+							<div class="form-group row">
+								<label for="endDate" class="col-sm-2 col-form-label text-right">Completed Date </label>
+								<div class="col-sm-4">
+									<div class="input-group">
+										<input class="form-control" type="text" name="endDate" ngbDatepicker #dpEndDate="ngbDatepicker" formControlName="endDate" />
+										<div class="input-group-append">
+											<button type="button" class="btn btn-primary" (click)="dpEndDate.toggle()">
+												<i class="fas fa-calendar-alt"></i>
+											</button>
 										</div>
-										<div class="custom-control custom-radio custom-control-inline">
-											<input type="radio" class="custom-control-input" id="statusInProgress" name="statusCode" value="inprogress" formControlName="statusCode">
-											<label class="custom-control-label" for="statusInProgress">In Progress</label>
-										</div>
-										<div class="custom-control custom-radio custom-control-inline">
-												<input type="radio" class="custom-control-input" id="statusCompleted" name="statusCode" value="completed" formControlName="statusCode">
-												<label class="custom-control-label" for="statusCompleted">Completed</label>
-											</div>
+
 									</div>
 								</div>
+							</div>
 
-
-								<div class="form-group row">
-									<label for="startDate" class="col-sm-2 col-form-label">Start Date </label>
-									<div class="col-md-4">
-										<input type="date" class="form-control" id="startDate" formControlName="startDate">
+							<div class="form-group row">
+								<label for="isCompleted" class="col-sm-2 col-form-label text-right">API Completed </label>
+								<div class="col-md-4 text-left">
+									<div class="custom-control custom-switch">
+										<input type="checkbox" class="custom-control-input" id="isApiCompleted" formControlName="isApiCompleted">
+										<label class="custom-control-label" for="isApiCompleted"></label>
 									</div>
 								</div>
-
-								<div class="form-group row">
-									<label for="endDate" class="col-sm-2 col-form-label">Completed Date </label>
-									<div class="col-sm-4">
-										<div class="input-group">
-											<input class="form-control" type="text" name="endDate" ngbDatepicker #dpEndDate="ngbDatepicker" formControlName="endDate" />
-											<div class="input-group-append">
-												<button type="button" class="btn btn-primary" (click)="dpEndDate.toggle()">
-													<i class="fas fa-calendar-alt"></i>
-												</button>
-											</div>
-
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="isCompleted" class="col-sm-2 col-form-label">API Completed </label>
-									<div class="col-md-4">
-										<div class="custom-control custom-switch">
-											<input type="checkbox" class="custom-control-input" id="isApiCompleted" formControlName="isApiCompleted">
-											<label class="custom-control-label" for="isApiCompleted"></label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="isCompleted" class="col-sm-2 col-form-label">UI Completed </label>
-									<div class="col-md-4">
-										<div class="custom-control custom-switch">
-											<input type="checkbox" class="custom-control-input" id="isUiCompleted" formControlName="isUiCompleted">
-											<label class="custom-control-label" for="isUiCompleted"></label>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<div class="offset-sm-2 col-sm-10 text-right">
-										<button type="submit" class="btn btn-primary w-25" [disabled]="!featureForm.valid">
-                      <i class="fas fa-save mr-2"></i>
-                      Save </button>
+							</div>
+							<div class="form-group row">
+								<label for="isCompleted" class="col-sm-2 col-form-label text-right">UI Completed </label>
+								<div class="col-md-4 text-left">
+									<div class="custom-control custom-switch">
+										<input type="checkbox" class="custom-control-input" id="isUiCompleted" formControlName="isUiCompleted">
+										<label class="custom-control-label" for="isUiCompleted"></label>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
-			</div>
-			<!-- {{featureForm.value|json}} -->
-
-		</form>
+			</form>
+		</div>
 	</div>
+</div>

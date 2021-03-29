@@ -6,6 +6,7 @@ import { forkJoin } from 'rxjs';
 import { ReleaseService } from '../release/release.service';
 import * as moment from 'moment';
 import { sortBy } from 'lodash';
+import { HeaderService } from '../layout/header/header.service';
 //import _ from 'lodash';
 
 @Component({
@@ -28,9 +29,10 @@ export class DashboardComponent implements OnInit {
     { dateLabel: 'April 2017', title: 'UAT end' },
     { dateLabel: 'May 2017', title: 'Release' }
   ];
-  constructor(private dataService: DataStoreService, private releaseService: ReleaseService) { }
+  constructor(private dataService: DataStoreService, private releaseService: ReleaseService, private headerService: HeaderService) { }
 
   ngOnInit() {
+    this.headerService.setTitle('Dashboard', 'dashboard');
 
     forkJoin([this.releaseService.getUpcomingReleases(), this.dataService.getClients()]).subscribe(results => {
       this.loading = false;

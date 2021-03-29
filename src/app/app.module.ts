@@ -12,6 +12,7 @@ import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter, NgbDateNativeUTCAdapte
 import { AppComponent } from './app.component';
 import { ClientComponent } from './client/client.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { HeaderService } from './layout/header/header.service';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReportsComponent } from './reports/reports.component';
@@ -64,7 +65,7 @@ import { CollapseCardAndTitleComponent } from './core/components/collapse-card-a
     NgxLoadingModule.forRoot({}),
     NgbModule
   ],
-  providers: [{ provide: NgbDateAdapter, useClass: DateStringAdapterService }],
+  providers: [{ provide: NgbDateAdapter, useClass: DateStringAdapterService }, HeaderService],
   entryComponents: [
     ManageClientComponent
   ],

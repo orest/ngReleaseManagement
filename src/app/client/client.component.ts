@@ -3,6 +3,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ManageClientComponent } from './manage-client/manage-client.component';
 import { DataStoreService } from '../core/services/data-store.service';
 import { Client } from '../core/modules/Client';
+import { HeaderService } from '../layout/header/header.service';
 
 @Component({
   selector: 'app-client',
@@ -14,9 +15,14 @@ export class ClientComponent implements OnInit {
   loading: boolean = false;
   clints: Client[] = [];
   mouseOverSave: false;
-  constructor(private modal: NgbModal, private api: DataStoreService) { }
+  imgPath: string = "assets/images/";
+  imgExt: string = ".png";
+
+  constructor(private modal: NgbModal, private api: DataStoreService, private headerService: HeaderService) { }
 
   ngOnInit() {
+    this.headerService.setTitle('Client', 'people');
+
     this.api.getClients().subscribe(data => {
       this.clints = data;
 

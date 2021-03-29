@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Feature } from 'src/app/core/modules/Feature';
 import { Route, ActivatedRoute, Router } from '@angular/router';
 import { DataStoreService } from '../../core/services/data-store.service';
+import { HeaderService } from '../../layout/header/header.service';
 
 @Component({
   selector: 'app-feature-details',
@@ -13,6 +14,8 @@ export class FeatureDetailsComponent implements OnInit {
   featureForm: FormGroup;
   private sub: any;
   id: number;
+  mouseOverSave = false;
+  loading: boolean = false;
 
   feature: Feature;
   featureTypes = [
@@ -23,11 +26,15 @@ export class FeatureDetailsComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private dataService: DataStoreService,
-    private router: Router) {
+    private router: Router,
+    private headerService: HeaderService) {
 
   }
 
   ngOnInit() {
+    this.headerService.setTitle('Features', 'settings_applications');
+    this.loading = true;
+
     this.featureForm = this.fb.group({
       displayName: ["", [Validators.required, Validators.maxLength(50)]],
       description: "",
@@ -42,7 +49,7 @@ export class FeatureDetailsComponent implements OnInit {
       this.id = +params.id;
       if (this.id > 0) {
         this.dataService.getFeature(this.id).subscribe(response => {
-
+          this.loading = false;
           this.feature = response;
           this.featureForm.patchValue({
             displayName: response.displayName,

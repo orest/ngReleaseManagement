@@ -123,8 +123,6 @@ export class ReleaseService {
     );
   }
 
-
-
   removeWorkItem(workItem) {
     var url = `${this.baseUrl}/WorkItems/${workItem.workItemId}`;
     return this.http.delete<boolean>(url).pipe(
